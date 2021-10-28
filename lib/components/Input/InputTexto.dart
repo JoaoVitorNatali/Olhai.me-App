@@ -46,13 +46,13 @@ class InputTexto extends StatelessWidget {
         FocusScope.of(context).requestFocus(recebedor_foco);
       },
       style: TextStyle(
-        fontSize: 25,
-        color: Colors.black,
+        fontSize: 20,
+        color: Colors.grey,
       ),
       decoration: InputDecoration(
         labelText: texto_label,
         labelStyle: TextStyle(
-          fontSize: 25,
+          fontSize: 20,
           color: Colors.grey,
         )
       ),

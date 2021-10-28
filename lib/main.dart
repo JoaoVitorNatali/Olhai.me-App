@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'components/Input/InputTexto.dart';
+import 'pages/Cadastro/index.dart';
 
 void main() {
   runApp(MyApp());
@@ -35,11 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          children: [
-            InputTexto("teste"),
-          ],
-        ),
+        child: Cadastro(),
       ),
     );
   }
