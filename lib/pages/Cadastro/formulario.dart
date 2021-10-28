@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../../components/Input/InputTexto.dart';
+import 'dart:developer';
 
 class FormularioCadastro extends StatefulWidget {
   const FormularioCadastro();
@@ -12,7 +13,27 @@ class FormularioCadastro extends StatefulWidget {
 class _FormularioCadastroState extends State<FormularioCadastro> {
 
   final formkey = GlobalKey<FormState>();
+  final controlador1 = TextEditingController();
 
+  bool validaEmail(String user){
+    return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(user);
+  }
+
+  bool validaTelefone(String user){
+    String telefone = user.replaceAll(
+        RegExp(r'[a-zA-Z\u00C0-\u00FF ]+', caseSensitive: false),
+        ''
+    );
+    return RegExp(r"^[0-9]{9}").hasMatch(user);
+  }
+
+  String? validaTelefoneEmail(String? user){
+    if(user!.isEmpty) return "O campo é obrigatório";
+    else if(!validaTelefone(user) && !validaEmail(user)){
+      return "E-mail ou telefone inválidos";
+    }
+    else return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +52,25 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
             Container(
               alignment: Alignment.center,
               child: InputTexto(
-                  'E-mail ou telefone',
-                  teclado: TextInputType.emailAddress
+                'E-mail ou telefone',
+                teclado: TextInputType.emailAddress,
+                controlador: controlador1,
+                validator: (String? user){
+                  return validaTelefoneEmail(user);
+                },
+              ),
+            ),
+            SizedBox(
+              height: 20
+            ),
+            Center(
+              child: ElevatedButton(
+                child: Text('Continuar'),
+                onPressed: (){
+                  if(formkey.currentState?.validate() != null){
+                    String user = controlador1.text;
+                  }
+                },
               ),
             )
           ],

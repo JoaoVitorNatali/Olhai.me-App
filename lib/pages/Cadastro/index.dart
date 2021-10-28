@@ -14,7 +14,11 @@ class _CadastroState extends State<Cadastro> {
     return Container(
       padding: EdgeInsets.all(16),
       color: Colors.black,
-      child: FormularioCadastro(),
+      child: ListView(
+        children: [
+          FormularioCadastro(),
+        ],
+      )
     );
   }
 }
