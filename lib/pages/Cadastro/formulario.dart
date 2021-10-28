@@ -20,11 +20,13 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
   }
 
   bool validaTelefone(String user){
-    String telefone = user.replaceAll(
-        RegExp(r'[a-zA-Z\u00C0-\u00FF ]+', caseSensitive: false),
-        ''
-    );
-    return RegExp(r"^[0-9]{9}").hasMatch(user);
+    bool hasCharInvalid = RegExp(r'[a-zA-Z\u00C0-\u00FF\$\+\%\¨\& ]+', caseSensitive: false).hasMatch(user);
+    if(hasCharInvalid){
+      return false;
+    }
+    String telefone = user.replaceAll('(', '').replaceAll(')', '');
+
+    return (telefone.length == 11);
   }
 
   String? validaTelefoneEmail(String? user){
