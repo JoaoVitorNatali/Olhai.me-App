@@ -1,9 +1,6 @@
-import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import '../../api/ResponseApi.dart';
+import '../../../api/ResponseApi.dart';
 
 
 class AcessoService{
@@ -14,7 +11,7 @@ class AcessoService{
     message = map["message"];
   }
 
-  static Future<ApiResponse<String>> obterCodigoDeAcesso(access_pass, context) async {
+  static Future<ApiResponse<String>> obterCodigoDeAcesso(access_pass) async {
     try {
       String _url = "https://api.olhai.me/v1/verifications";
       Map params = {
@@ -26,8 +23,6 @@ class AcessoService{
       final _uri = Uri.parse(_url);
       var response = await http.post(
           _uri, body: body, headers: {"Content-Type": "application/json"});
-
-      log(response.body);
 
       if(response.statusCode == 204) {
         return ApiResponse.ok(response.body);

@@ -4,11 +4,10 @@ import 'package:flutter/widgets.dart';
 //components
 import '../../components/Input/InputTexto.dart';
 import '../../components/Button/BtnPrimary.dart';
-import '../VerificarCodigo/index.dart';
 
 //request
-import '../../api/ResponseApi.dart';
-import 'requisitarApi.dart';
+import 'package:shortlink/api/ResponseApi.dart';
+import 'package:shortlink/api/Acessar/requisitarApi.dart';
 
 class FormularioCadastro extends StatefulWidget {
   const FormularioCadastro();
@@ -58,7 +57,7 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
       access_pass = "+55" + user.replaceAll('(', '').replaceAll(')', '');
     }
 
-    ApiResponse response = await AcessoService.obterCodigoDeAcesso(access_pass, context);
+    ApiResponse response = await AcessoService.obterCodigoDeAcesso(access_pass);
 
     if(response.ok == false){
       setState((){
@@ -66,10 +65,7 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
       });
     }
     else{
-      Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => VerificarCodigo())
-      );
+      Navigator.pushNamed(context, '/verificar-codigo');
     }
 
     setState((){

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/Acessar/index.dart';
+import 'pages/VerificarCodigo/index.dart';
 
 void main() {
   runApp(MyApp());
@@ -7,36 +8,22 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  final title = "ShortLink";
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: title,
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: MyHomePage(title: 'Shortlink'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Cadastro(),
-      ),
+      initialRoute: '/verificar-codigo',
+      routes: {
+        '/acesso': (context) => Cadastro(title: title),
+        '/verificar-codigo': (context) => VerificarCodigo(
+            title: title, user: 'joao.vitornatali0@gmail.com'
+        ),
+      },
     );
   }
 }

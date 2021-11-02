@@ -10,6 +10,7 @@ class InputTexto extends StatelessWidget {
   late TextInputType teclado;
   FocusNode? marcador_foco;
   FocusNode? recebedor_foco;
+  late int max_length;
 
 
   InputTexto(
@@ -21,7 +22,8 @@ class InputTexto extends StatelessWidget {
         this.validator = null,
         this.teclado = TextInputType.text,
         this.marcador_foco = null,
-        this.recebedor_foco = null
+        this.recebedor_foco = null,
+        this.max_length = 60,
       }
   ){
     if(this.validator == null){
@@ -56,6 +58,7 @@ class InputTexto extends StatelessWidget {
           color: Colors.grey,
         )
       ),
+      maxLength: max_length,
     );
   }
 }
