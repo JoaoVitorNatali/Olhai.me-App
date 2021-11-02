@@ -1,7 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'ValidarCodigo.dart';
 import 'contador.dart';
 
-import 'package:shortlink/components/Input/InputTexto.dart';
 
 class VerificarCodigo extends StatefulWidget {
   const VerificarCodigo({Key? key, required this.title, required this.user}) : super(key: key);
@@ -13,9 +15,6 @@ class VerificarCodigo extends StatefulWidget {
 }
 
 class _VerificarCodigoState extends State<VerificarCodigo> {
-
-  final formkey = GlobalKey<FormState>();
-  final controlador1 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -62,23 +61,12 @@ class _VerificarCodigoState extends State<VerificarCodigo> {
                     ),
                   ),
 
+
                   SizedBox(
                       height: 60
                   ),
 
-                  Form(
-                    key:formkey,
-                    child: Column(
-                      children: [
-                        InputTexto(
-                          'Código',
-                          teclado: TextInputType.number,
-                          max_length: 6,
-                          controlador: controlador1,
-                        )
-                      ],
-                    ),
-                  ),
+                  EnviarCodigo(user: widget.user),
 
                   SizedBox(
                       height: 60

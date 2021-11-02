@@ -11,6 +11,7 @@ class InputTexto extends StatelessWidget {
   FocusNode? marcador_foco;
   FocusNode? recebedor_foco;
   late int max_length;
+  Function(String)? onChanged;
 
 
   InputTexto(
@@ -24,6 +25,7 @@ class InputTexto extends StatelessWidget {
         this.marcador_foco = null,
         this.recebedor_foco = null,
         this.max_length = 60,
+        this.onChanged = null,
       }
   ){
     if(this.validator == null){
@@ -47,6 +49,7 @@ class InputTexto extends StatelessWidget {
       onFieldSubmitted: (String text){
         FocusScope.of(context).requestFocus(recebedor_foco);
       },
+      onChanged: onChanged,
       style: TextStyle(
         fontSize: 20,
         color: Colors.grey,

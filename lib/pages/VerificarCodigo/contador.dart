@@ -35,7 +35,12 @@ class _ContadorState extends State<Contador> {
   }
 
   String getTimeFormated(){
-    return "$minutes:$seconds";
+    String min = "0" + minutes.toString();
+    String sec;
+    if(seconds < 10) sec = "0" + seconds.toString();
+    else sec = seconds.toString();
+
+    return "$min:$sec";
   }
 
   void _startTimer(){
@@ -53,7 +58,6 @@ class _ContadorState extends State<Contador> {
 
 
   void initState() {
-    super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) => _startTimer());
   }
 
@@ -75,7 +79,7 @@ class _ContadorState extends State<Contador> {
               mostrarLoadEnviarCodigo = true;
             });
 
-            ApiResponse response = await AcessoService.obterCodigoDeAcesso(widget.user);
+            var response = await AcessoService.obterCodigoDeAcesso(widget.user);
 
             setState((){
               mostrarLoadEnviarCodigo = false;

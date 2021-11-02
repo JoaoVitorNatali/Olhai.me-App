@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/acesso': (context) => Cadastro(title: title),
         '/verificar-codigo': (context) => VerificarCodigo(
-            title: title, user: 'joao.vitornatali0@gmail.com'
+            title: title, user: '+5527988632926'
         ),
       },
     );

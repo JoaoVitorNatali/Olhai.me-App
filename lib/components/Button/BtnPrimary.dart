@@ -27,7 +27,7 @@ class BtnPrimary extends StatelessWidget {
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
           ),
-      ) : Text(texto),
+      ) : Text(texto)
     );
   }
 }

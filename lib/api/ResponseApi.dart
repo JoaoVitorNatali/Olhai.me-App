@@ -1,15 +1,25 @@
+import 'dart:convert';
+
+import 'dart:developer';
+
 class ApiResponse<T>{
   bool? ok;
-  String? _msg;
-  T? resultado = null;
+  Map? _body;
 
-  String? get msg => this._msg;
+  Map? get body => this._body;
 
-  ApiResponse.ok(this.resultado){
-    ok = true;
+  set body(body){
+    if(body.toString().length > 0) this._body = json.decode(body);
+    else this._body = null;
   }
 
-  ApiResponse.error(this._msg){
+  ApiResponse.ok(body){
+    ok = true;
+    this.body = body;
+  }
+
+  ApiResponse.error(body){
     ok = false;
+    this.body = body;
   }
 }
