@@ -1,13 +1,15 @@
 class ApiResponse<T>{
   bool? ok;
-  String? msg;
+  String? _msg;
   T? resultado = null;
+
+  String? get msg => this._msg;
 
   ApiResponse.ok(this.resultado){
     ok = true;
   }
 
-  ApiResponse.error(this.msg){
+  ApiResponse.error(this._msg){
     ok = false;
   }
 }

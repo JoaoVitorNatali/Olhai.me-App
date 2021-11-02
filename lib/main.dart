@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/Cadastro/index.dart';
+import 'pages/Acessar/index.dart';
 
 void main() {
   runApp(MyApp());

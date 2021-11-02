@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+//components
 import '../../components/Input/InputTexto.dart';
-import 'dart:developer';
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import '../../components/Button/BtnPrimary.dart';
+import '../VerificarCodigo/index.dart';
+
+//request
 import '../../api/ResponseApi.dart';
+import 'requisitarApi.dart';
 
 class FormularioCadastro extends StatefulWidget {
   const FormularioCadastro();
@@ -17,6 +21,8 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
 
   final formkey = GlobalKey<FormState>();
   final controlador1 = TextEditingController();
+  bool _mostrar_progress = false;
+  String _mensagemDeErro = "";
 
   bool validaEmail(String user){
     return RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(user);
@@ -40,34 +46,35 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
     else return null;
   }
 
-  static Future<ApiResponse<String>> obterCodigoDeAcesso(access_pass) async {
-    try {
-      String _url = "https://api.olhai.me/v1/verifications";
-      Map params = {
-        'access_pass': access_pass,
-      };
 
-      var body = json.encode(params);
+  void realizarLogin(user, context) async{
+    setState((){
+      _mostrar_progress = true;
+      _mensagemDeErro = "";
+    });
 
-      final _uri = Uri.parse(_url);
-      var response = await http.post(
-          _uri, body: body, headers: {"Content-Type": "application/json"});
-
-      if(response.statusCode == 200) return ApiResponse.ok(response.body);
-      return ApiResponse.error(response.body);
-    }
-    on Exception catch (erro){
-      return ApiResponse.error(erro.toString());
-    }
-  }
-
-  void realizarLogin(user){
     String access_pass = user;
     if(validaTelefone(user)){
       access_pass = "+55" + user.replaceAll('(', '').replaceAll(')', '');
     }
 
-    obterCodigoDeAcesso(access_pass);
+    ApiResponse response = await AcessoService.obterCodigoDeAcesso(access_pass, context);
+
+    if(response.ok == false){
+      setState((){
+        _mensagemDeErro = "Não foi possível enviar o SMS, verifique o número digitado.";
+      });
+    }
+    else{
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => VerificarCodigo())
+      );
+    }
+
+    setState((){
+      _mostrar_progress = false;
+    });
   }
 
   @override
@@ -98,13 +105,17 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
             SizedBox(
               height: 20
             ),
+            Text(_mensagemDeErro,
+              style: TextStyle(color: Colors.red),
+            ),
             Center(
-              child: ElevatedButton(
-                child: Text('Continuar'),
-                onPressed: (){
-                  if(formkey.currentState?.validate() != null){
+              child: BtnPrimary(
+                'Continuar',
+                mostrar_progress: _mostrar_progress,
+                ao_clicar: (){
+                  if(formkey.currentState?.validate() == true){
                     String user = controlador1.text;
-                    realizarLogin(user);
+                    realizarLogin(user, context);
                   }
                 },
               ),
