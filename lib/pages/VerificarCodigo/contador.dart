@@ -18,8 +18,8 @@ class Contador extends StatefulWidget {
 
 class _ContadorState extends State<Contador> {
 
-  int minutes = 0;
-  int seconds = 5;
+  int minutes = 5;
+  int seconds = 0;
   late Timer _timer;
   bool showTimer = true;
   bool mostrarLoadEnviarCodigo = false;

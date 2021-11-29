@@ -66,7 +66,7 @@ class _VerificarCodigoState extends State<VerificarCodigo> {
                       height: 60
                   ),
 
-                  EnviarCodigo(user: widget.user),
+                  EnviarCodigo(title: widget.title, user: widget.user),
 
                   SizedBox(
                       height: 60

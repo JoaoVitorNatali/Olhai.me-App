@@ -9,8 +9,12 @@ import '../../components/Button/BtnPrimary.dart';
 import 'package:shortlink/api/ResponseApi.dart';
 import 'package:shortlink/api/Acessar/requisitarApi.dart';
 
+//page
+import 'package:shortlink/pages/VerificarCodigo/index.dart';
+
 class FormularioCadastro extends StatefulWidget {
-  const FormularioCadastro();
+  const FormularioCadastro({required this.title});
+  final String title;
 
   @override
   _FormularioCadastroState createState() => _FormularioCadastroState();
@@ -65,7 +69,9 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
       });
     }
     else{
-      Navigator.pushNamed(context, '/verificar-codigo');
+      Navigator.push(context, MaterialPageRoute(
+          builder: (context) => VerificarCodigo(title: widget.title, user: access_pass)
+      ));
     }
 
     setState((){

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/Acessar/index.dart';
-import 'pages/VerificarCodigo/index.dart';
+import 'components/Menu/index.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,12 +17,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      initialRoute: '/verificar-codigo',
+      initialRoute: '/',
       routes: {
         '/acesso': (context) => Cadastro(title: title),
-        '/verificar-codigo': (context) => VerificarCodigo(
-            title: title, user: '+5527988632926'
-        ),
+        '/': (context) => Menu(),
       },
     );
   }

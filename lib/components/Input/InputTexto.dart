@@ -59,7 +59,7 @@ class InputTexto extends StatelessWidget {
         labelStyle: TextStyle(
           fontSize: 20,
           color: Colors.grey,
-        )
+        ),
       ),
       maxLength: max_length,
     );

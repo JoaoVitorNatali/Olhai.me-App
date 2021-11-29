@@ -22,7 +22,7 @@ class _CadastroState extends State<Cadastro> {
             color: Colors.black,
             child: ListView(
               children: [
-                FormularioCadastro(),
+                FormularioCadastro(title: widget.title),
               ],
             )
         ),

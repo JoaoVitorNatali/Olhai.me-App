@@ -4,8 +4,12 @@ import "package:flutter/material.dart";
 import 'package:shortlink/api/Acessar/ValidarCodigo.dart';
 import 'package:shortlink/components/Input/InputTexto.dart';
 
+//page
+import 'package:shortlink/pages/AlterarNome/index.dart';
+
 class EnviarCodigo extends StatefulWidget {
-  const EnviarCodigo({Key? key, required this.user}) : super(key: key);
+  const EnviarCodigo({Key? key, required this.title, required this.user}) : super(key: key);
+  final String title;
   final String user;
 
   @override
@@ -33,7 +37,11 @@ class _EnviarCodigoState extends State<EnviarCodigo> {
     log(response.body.toString());
 
     if(response.ok == true){
-
+      if(response.body?["is_new_user"] == true){
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => AlterarNome(title: widget.title)
+        ));
+      }
     } else {
       setState(() {
         _mensagemErro = "Código inválido";
