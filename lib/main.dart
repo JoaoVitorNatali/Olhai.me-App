@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+
+//routes
 import 'pages/Acessar/index.dart';
-import 'components/Menu/index.dart';
+import 'pages/Home/index.dart';
+import 'pages/ShortLinks/index.dart';
 
 void main() {
   runApp(MyApp());
@@ -20,7 +23,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/acesso': (context) => Cadastro(title: title),
-        '/': (context) => Menu(),
+        '/': (context) => HomePage(),
+        '/shortlinks': (context) => ShortLinks(),
       },
     );
   }

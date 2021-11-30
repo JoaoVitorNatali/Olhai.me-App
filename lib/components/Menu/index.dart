@@ -10,24 +10,32 @@ class Menu extends StatefulWidget {
 class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: Drawer(
-          child: Column(
-              children: [
-                UserAccountsDrawerHeader(
-                  currentAccountPicture: Icon(Icons.account_circle, size: 80),
-                  accountName: Text('Teste'),
-                  accountEmail: Text(''),
-                ),
-                ListTile(
-                    leading: Icon(Icons.home),
-                    title: Text('inicio'),
-                    subtitle: Text('tela de inicio')
-                ),
-              ]
-          )
-      ),
-      appBar: AppBar(),
+    return Drawer(
+        child: Column(
+            children: [
+              const UserAccountsDrawerHeader(
+                currentAccountPicture: Icon(Icons.account_circle, size: 80),
+                accountName: Text('Teste'),
+                accountEmail: Text(''),
+              ),
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text('inicio'),
+                subtitle: Text('tela de inicio'),
+                onTap: () {
+                  Navigator.pushNamed(context, "/");
+                }
+              ),
+              ListTile(
+                leading: Icon(Icons.link),
+                title: Text('Encurtador'),
+                subtitle: Text('Encurtador de links'),
+                onTap: () {
+                  Navigator.pushNamed(context, "/shortlinks");
+                }
+              )
+            ]
+        )
     );
   }
 }
