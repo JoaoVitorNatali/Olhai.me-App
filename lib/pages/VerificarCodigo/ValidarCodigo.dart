@@ -41,7 +41,7 @@ class _EnviarCodigoState extends State<EnviarCodigo> {
 
       if(response.body?["is_new_user"] == true){
         Navigator.push(context, MaterialPageRoute(
-            builder: (context) => AlterarNome(title: widget.title)
+            builder: (context) => AlterarNome(title: widget.title, token: response.body?["token"])
         ));
       } else {
         Navigator.push(context, MaterialPageRoute(

@@ -104,7 +104,7 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20
             ),
             Text(_mensagemDeErro,

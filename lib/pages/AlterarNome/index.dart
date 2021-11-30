@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'FormAlterarNome.dart';
 
 class AlterarNome extends StatelessWidget {
-  const AlterarNome({Key? key, required this.title}) : super(key: key);
+  const AlterarNome({Key? key, required this.title, required this.token}) : super(key: key);
   final String title;
+  final String token;
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +19,11 @@ class AlterarNome extends StatelessWidget {
               child: Center(
                 child: ListView(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                         height: 100
                     ),
 
-                    Center(
+                    const Center(
                       child: Text(
                         "Informe o nome que deseja ser chamado:",
                         style: TextStyle(
@@ -35,12 +36,12 @@ class AlterarNome extends StatelessWidget {
                       ),
                     ),
 
-                    SizedBox(
+                    const SizedBox(
                         height: 60
                     ),
 
-                    FormAlterarNome(),
-                    ]
+                    FormAlterarNome(token: token),
+                  ]
                 )
               )
           )
