@@ -3,9 +3,11 @@ import 'dart:developer';
 import "package:flutter/material.dart";
 import 'package:shortlink/api/Acessar/ValidarCodigo.dart';
 import 'package:shortlink/components/Input/InputTexto.dart';
+import 'package:shortlink/preferences/User.dart';
 
 //page
 import 'package:shortlink/pages/AlterarNome/index.dart';
+import 'package:shortlink/routes/index.dart';
 
 class EnviarCodigo extends StatefulWidget {
   const EnviarCodigo({Key? key, required this.title, required this.user}) : super(key: key);
@@ -34,12 +36,16 @@ class _EnviarCodigoState extends State<EnviarCodigo> {
       _mostrarLoad = false;
     });
 
-    log(response.body.toString());
-
     if(response.ok == true){
+      Usuario.salvar(response.body);
+
       if(response.body?["is_new_user"] == true){
         Navigator.push(context, MaterialPageRoute(
             builder: (context) => AlterarNome(title: widget.title)
+        ));
+      } else {
+        Navigator.push(context, MaterialPageRoute(
+            builder: (context) => const Routes()
         ));
       }
     } else {
@@ -68,7 +74,7 @@ class _EnviarCodigoState extends State<EnviarCodigo> {
           ),
 
           Center(
-            child: _mostrarLoad ? CircularProgressIndicator(
+            child: _mostrarLoad ? const CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ) : null
           ),

@@ -24,17 +24,17 @@ class _VerificarCodigoState extends State<VerificarCodigo> {
       ),
       body: Center(
         child: Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             color: Colors.black,
             child: Center(
               child: ListView(
                 children: [
 
-                  SizedBox(
+                  const SizedBox(
                       height: 100
                   ),
 
-                  Center(
+                  const Center(
                     child: Text(
                       'Informe o último código enviado para',
                       style: TextStyle(
@@ -45,14 +45,14 @@ class _VerificarCodigoState extends State<VerificarCodigo> {
                     ),
                   ),
 
-                  SizedBox(
+                  const SizedBox(
                       height: 20
                   ),
 
                   Center(
                     child: Text(
                       "${widget.user}",
-                      style: TextStyle(
+                      style: const TextStyle(
                           color: Colors.purple,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -62,13 +62,13 @@ class _VerificarCodigoState extends State<VerificarCodigo> {
                   ),
 
 
-                  SizedBox(
+                  const SizedBox(
                       height: 60
                   ),
 
                   EnviarCodigo(title: widget.title, user: widget.user),
 
-                  SizedBox(
+                  const SizedBox(
                       height: 60
                   ),
 

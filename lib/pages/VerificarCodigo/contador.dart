@@ -56,7 +56,13 @@ class _ContadorState extends State<Contador> {
     });
   }
 
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
+  @override
   void initState() {
     WidgetsBinding.instance!.addPostFrameCallback((_) => _startTimer());
   }

@@ -35,7 +35,7 @@ class _MenuState extends State<Menu> {
                   Navigator.pushNamed(context, "/shortlinks");
                 }
               ),
-              ListTile(
+              const ListTile(
                   leading: Icon(Icons.settings),
                   title: Text('Minha Conta'),
                   subtitle: Text('Configurar perfil'),
