@@ -1,17 +1,16 @@
-
 import 'package:flutter/material.dart';
 
 class BtnPrimary extends StatelessWidget {
 
   String texto;
-  VoidCallback? ao_clicar;
+  late VoidCallback ao_clicar;
   FocusNode? marcador_foco;
   bool mostrar_progress;
 
   BtnPrimary(
     this.texto,
     {
-      this.ao_clicar,
+      required this.ao_clicar,
       this.marcador_foco = null,
       this.mostrar_progress = false
     }
@@ -23,11 +22,11 @@ class BtnPrimary extends StatelessWidget {
       onPressed: ao_clicar,
       focusNode: marcador_foco,
       child: mostrar_progress
-        ? Center(
+        ? const Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
           ),
-      ) : Text(texto)
+      ) : Text(texto),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shortlink/components/Menu/index.dart';
 
@@ -13,9 +14,26 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Menu(),
-      appBar: AppBar(),
-      body: Center(
+      appBar: AppBar(title: Text('Home'),),
+      body: Container(
+        padding: EdgeInsets.all(16),
+        color: Colors.black,
+        child: ListView(
+          children: [
 
+            SizedBox(
+                height: 20
+            ),
+
+            Text(
+              'Minhas páginas',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -11,6 +11,7 @@ class _MenuState extends State<Menu> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+
         child: Column(
             children: [
               const UserAccountsDrawerHeader(
@@ -33,6 +34,11 @@ class _MenuState extends State<Menu> {
                 onTap: () {
                   Navigator.pushNamed(context, "/shortlinks");
                 }
+              ),
+              ListTile(
+                  leading: Icon(Icons.settings),
+                  title: Text('Minha Conta'),
+                  subtitle: Text('Configurar perfil'),
               )
             ]
         )
