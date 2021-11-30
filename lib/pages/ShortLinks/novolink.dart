@@ -11,38 +11,54 @@ class NovoLink extends StatefulWidget {
 }
 
 class _NovoLinkState extends State<NovoLink> {
+  final formkey = GlobalKey<FormState>();
+  final controlador1 = TextEditingController();
+  final controlador2 = TextEditingController();
+  bool _mostrar_progress = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Adicionar link')),
-      body: Center(
-        child: Container(
-          color: Colors.black,
-          child: ListView(
-            padding: EdgeInsets.all(16),
-            children: [
+      body: Form(
+        key: formkey,
+        child: Center(
+          child: Container(
+            color: Colors.black,
+            child: ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
 
-              SizedBox(
-                  height: 20
-              ),
+                const SizedBox(
+                    height: 20
+                ),
 
 
-              InputTexto('Chave...'),
+                InputTexto(
+                  'Chave...',
+                  controlador: controlador1,
+                ),
 
-              InputTexto('URL...'),
+                InputTexto(
+                  'URL...',
+                  controlador: controlador2,
+                ),
 
-              SizedBox(
-                  height: 10
-              ),
+                const SizedBox(
+                    height: 10
+                ),
 
-              BtnPrimary(
-                'Encurtar link',
-                ao_clicar: (){
+                BtnPrimary(
+                  'Encurtar link',
+                  ao_clicar: (){
+                    if(formkey.currentState?.validate() == true){
 
-                },
-              )
+                    }
+                  },
+                )
 
-            ],
+              ],
+            ),
           ),
         ),
       ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,14 +21,14 @@ class _TelaAberturaState extends State<TelaAbertura> {
     
     usuario.then((value) => {
       if(usuario != null){
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (BuildContext context) => Cadastro(title: 'Shortlink'))
-          )
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (BuildContext context) => Routes())
+        )
       }
       else{
-        Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) => Routes())
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (BuildContext context) => Cadastro(title: 'Shortlink'))
         )
       }
     });
