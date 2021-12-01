@@ -2,9 +2,12 @@ import 'dart:convert';
 
 import 'dart:developer';
 
+import 'package:http/http.dart';
+
 class ApiResponse<T>{
   bool? ok;
   Map? _body;
+  Response? response;
 
   Map? get body => this._body;
 
@@ -13,13 +16,15 @@ class ApiResponse<T>{
     else this._body = null;
   }
 
-  ApiResponse.ok(body){
+  ApiResponse.ok(body, {response = null}){
     ok = true;
     this.body = body;
+    this.response = response;
   }
 
-  ApiResponse.error(body){
+  ApiResponse.error(body, {response = null}){
     ok = false;
     this.body = body;
+    this.response = response;
   }
 }
