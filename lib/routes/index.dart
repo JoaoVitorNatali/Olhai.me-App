@@ -25,7 +25,7 @@ class _RoutesState extends State<Routes> {
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
-        '/shortlinks': (context) => ShortLinks(),
+        '/shortlinks': (context) => ShortLinksPage(),
       },
     );
   }

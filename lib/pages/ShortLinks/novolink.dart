@@ -4,7 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shortlink/components/Input/InputTexto.dart';
 import 'package:shortlink/components/Button/BtnPrimary.dart';
-import 'package:shortlink/api/ShortLink/criarLink.dart';
+import 'package:shortlink/api/ShortLink/link.dart';
 
 
 class NovoLink extends StatefulWidget {
@@ -33,7 +33,7 @@ class _NovoLinkState extends State<NovoLink> {
       _mostrar_progress = false;
 
       if(response.ok == true){
-        Navigator.pop(context);
+        Navigator.pushReplacementNamed(context, '/shortlinks');
       }
       else{
         if(response.body!["message"] != null){

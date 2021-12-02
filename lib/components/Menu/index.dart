@@ -24,7 +24,7 @@ class _MenuState extends State<Menu> {
                 title: Text('inicio'),
                 subtitle: Text('tela de inicio'),
                 onTap: () {
-                  Navigator.pushNamed(context, "/");
+                  Navigator.pushReplacementNamed(context, "/");
                 }
               ),
               ListTile(
@@ -32,7 +32,7 @@ class _MenuState extends State<Menu> {
                 title: Text('Encurtador'),
                 subtitle: Text('Encurtador de links'),
                 onTap: () {
-                  Navigator.pushNamed(context, "/shortlinks");
+                  Navigator.pushReplacementNamed(context, "/shortlinks");
                 }
               ),
               const ListTile(
