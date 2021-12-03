@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+
 import 'package:shortlink/components/Button/BtnPrimary.dart';
 import 'package:shortlink/components/Button/BtnDanger.dart';
+import 'package:shortlink/pages/ShortLinks/ModalExcluirLink.dart';
 
 class CardLink extends StatefulWidget {
   const CardLink({Key? key, required this.id, required this.name, required this.url}) : super(key: key);
@@ -57,7 +60,10 @@ class _CardLinkState extends State<CardLink> {
                         Column(
                           children: [
                             BtnDanger("Excluir", ao_clicar: (){
-
+                              showCupertinoModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => ModalExcluirLink(id: widget.id)
+                              );
                             }),
                           ],
                         )

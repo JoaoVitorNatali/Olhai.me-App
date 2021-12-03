@@ -55,4 +55,25 @@ class ShortLink{
       return json.decode(erro.toString());
     }
   }
+
+  static Future<ApiResponse<String>> excluirLink(id) async{
+    try {
+      String _url = "https://api.olhai.me/v1/shortlinks/${id}";
+      final _uri = Uri.parse(_url);
+
+      Future<Map?> usuario = Usuario.obter();
+      return usuario.then( (value) async {
+        var response = await http.get(
+          _uri, headers: {
+            "Content-Type": "application/json",
+            "Token": value?["token"],
+          },
+        );
+
+        return ApiResponse.ok(response.body);
+      });
+    } catch (erro){
+      return ApiResponse.error(erro.toString());
+    }
+  }
 }
