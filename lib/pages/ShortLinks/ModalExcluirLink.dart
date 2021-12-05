@@ -26,7 +26,6 @@ class _ModalExcluirLinkState extends State<ModalExcluirLink> {
 
     setState(() {
       _loader_excluir = false;
-      log(response.toString());
       if(response.ok == true){
 
         widget.listar();
