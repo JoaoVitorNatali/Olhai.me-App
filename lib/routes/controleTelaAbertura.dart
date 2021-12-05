@@ -20,15 +20,15 @@ class _TelaAberturaState extends State<TelaAbertura> {
     Future<Map?> usuario = Usuario.obter();
     
     usuario.then((value) => {
-      if(usuario != null){
+      if(value?["token"] != null){
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (BuildContext context) => Routes())
+            MaterialPageRoute(builder: (BuildContext context) => const Routes())
         )
       }
       else{
         Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (BuildContext context) => Cadastro(title: 'Shortlink'))
+            MaterialPageRoute(builder: (BuildContext context) => const Cadastro(title: 'Shortlink'))
         )
       }
     });

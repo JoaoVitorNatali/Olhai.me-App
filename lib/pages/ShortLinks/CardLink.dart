@@ -5,6 +5,7 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shortlink/components/Button/BtnPrimary.dart';
 import 'package:shortlink/components/Button/BtnDanger.dart';
 import 'package:shortlink/pages/ShortLinks/ModalExcluirLink.dart';
+import 'package:shortlink/pages/ShortLinks/ModalCompartilharLink.dart';
 
 class CardLink extends StatefulWidget {
   const CardLink({
@@ -58,7 +59,12 @@ class _CardLinkState extends State<CardLink> {
                     Row(
                       children: [
                         BtnPrimary("Compartilhar", ao_clicar: (){
-
+                          showCupertinoModalBottomSheet(
+                              context: context,
+                              builder: (context) => Scaffold(
+                                body: ModalCompartilharLink(name: widget.name, url: widget.url),
+                              )
+                          );
                         }),
                       ],
                     ),
