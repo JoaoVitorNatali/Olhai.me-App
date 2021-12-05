@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter_share/flutter_share.dart';
 
-class ModalCompartilharLink extends StatefulWidget {
-  const ModalCompartilharLink({Key? key, required this.name, required this.url}) : super(key: key);
+class CompartilharLink extends StatefulWidget {
+  const CompartilharLink({Key? key, required this.title, required this.compartilhar}) : super(key: key);
 
-  final String name;
-  final String url;
+  final String title;
+  final String compartilhar;
 
   @override
-  _ModalCompartilharLinkState createState() => _ModalCompartilharLinkState();
+  _CompartilharLinkState createState() => _CompartilharLinkState();
 }
 
-class _ModalCompartilharLinkState extends State<ModalCompartilharLink> {
+class _CompartilharLinkState extends State<CompartilharLink> {
 
   Future<void> share() async {
     await FlutterShare.share(
-        title: "Site",
-        text: "Visite o site:",
-        linkUrl: "go.olhai.me/${widget.name}",
+      title: "Site",
+      text: "Visite o site:",
+      linkUrl: widget.compartilhar,
     );
   }
 
@@ -34,9 +34,9 @@ class _ModalCompartilharLinkState extends State<ModalCompartilharLink> {
               child: Text(
                 'Compartilhar',
                 style: TextStyle(
-                  color: Colors.black,
-                  decoration: TextDecoration.none,
-                  fontSize: 24
+                    color: Colors.black,
+                    decoration: TextDecoration.none,
+                    fontSize: 24
                 ),
               ),
             ),
@@ -45,7 +45,7 @@ class _ModalCompartilharLinkState extends State<ModalCompartilharLink> {
 
             Center(
               child: Text(
-                "go.olhai.me/${widget.name}",
+                "go.olhai.me/${widget.title}",
                 style: const TextStyle(
                     color: Colors.black,
                     decoration: TextDecoration.none,
@@ -70,10 +70,10 @@ class _ModalCompartilharLinkState extends State<ModalCompartilharLink> {
                   GestureDetector(
                     child: const Icon(Icons.paste, color: Colors.purple, size: 40,),
                     onTap: (){
-                      FlutterClipboard.copy("go.olhai.me/${widget.name}").then(
-                          (value) => ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text("Link copiado"),
+                      FlutterClipboard.copy("go.olhai.me/${widget.title}").then(
+                              (value) => ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                                content: Text("${widget.title} copiado para a área de transferência"),
                                 behavior: SnackBarBehavior.floating
                             ),
                           )
@@ -98,8 +98,8 @@ class _ModalCompartilharLinkState extends State<ModalCompartilharLink> {
                     ),
                   ),
                   GestureDetector(
-                    child: const Icon(Icons.share, color: Colors.purple, size: 40,),
-                    onTap: share
+                      child: const Icon(Icons.share, color: Colors.purple, size: 40,),
+                      onTap: share
                   ),
                 ],
               ),

@@ -22,10 +22,6 @@ class _ShortLinksState extends State<ShortLinksPage> {
 
   Future listarColecao() async{
 
-    setState(() {
-      _loader_links = true;
-    });
-
     var response = await ShortLink.listarLinks();
 
     setState(() {
@@ -39,10 +35,17 @@ class _ShortLinksState extends State<ShortLinksPage> {
     });
   }
 
+  Future foreignListar() async {
+    setState(() {
+      _loader_links = true;
+    });
+    listarColecao();
+  }
+
   @override
   void initState() {
     super.initState();
-    listarColecao();
+    foreignListar();
   }
 
   @override
@@ -53,7 +56,7 @@ class _ShortLinksState extends State<ShortLinksPage> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-          Navigator.pushReplacement(
+          Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (BuildContext context) => const NovoLink()
@@ -91,7 +94,7 @@ class _ShortLinksState extends State<ShortLinksPage> {
                             id: colecao![index]["id"].toString(),
                             name: colecao![index]["name"].toString(),
                             url: colecao![index]["url"].toString(),
-                            listar: listarColecao,
+                            listar: foreignListar,
                           );
                         }
                   )
