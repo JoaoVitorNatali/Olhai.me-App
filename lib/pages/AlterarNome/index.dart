@@ -14,7 +14,7 @@ class AlterarNome extends StatelessWidget {
         ),
         body: Center(
           child: Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             color: Colors.black,
               child: Center(
                 child: ListView(

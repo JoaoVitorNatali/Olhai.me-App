@@ -72,7 +72,7 @@ class _ContadorState extends State<Contador> {
     return Container(
         child: showTimer ? Text(
           'Reenviar em ${getTimeFormated()}',
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white,
               fontSize: 20
           ),

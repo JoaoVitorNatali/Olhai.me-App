@@ -84,14 +84,14 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
     return Form(
       key: formkey,
       child: Container(
-        margin: EdgeInsets.all(16),
+        margin: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               child: Image.asset('assets/images/logo_login.png'),
               width: 100,
-              margin: EdgeInsets.only(bottom: 100, top: 100),
+              margin: const EdgeInsets.only(bottom: 100, top: 100),
             ),
             Container(
               alignment: Alignment.center,
@@ -108,7 +108,7 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
               height: 20
             ),
             Text(_mensagemDeErro,
-              style: TextStyle(color: Colors.red),
+              style: const TextStyle(color: Colors.red),
             ),
             Center(
               child: BtnPrimary(
