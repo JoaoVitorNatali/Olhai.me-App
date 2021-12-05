@@ -18,6 +18,7 @@ class _RoutesState extends State<Routes> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: title,
       theme: ThemeData(
         primarySwatch: Colors.purple,
