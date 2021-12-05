@@ -1,46 +1,45 @@
-import 'dart:developer';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:shortlink/components/Input/InputTexto.dart';
+import 'package:shortlink/api/Pages/pages.dart';
 import 'package:shortlink/components/Button/BtnPrimary.dart';
-import 'package:shortlink/api/ShortLink/link.dart';
+import 'package:shortlink/components/Input/InputTexto.dart';
 
-
-class NovoLink extends StatefulWidget {
-  const NovoLink({Key? key}) : super(key: key);
+class NovaPagina extends StatefulWidget {
+  const NovaPagina({Key? key}) : super(key: key);
 
   @override
-  _NovoLinkState createState() => _NovoLinkState();
+  _NovaPaginaState createState() => _NovaPaginaState();
 }
 
-class _NovoLinkState extends State<NovoLink> {
+class _NovaPaginaState extends State<NovaPagina> {
   final formkey = GlobalKey<FormState>();
   final controlador1 = TextEditingController();
-  final controlador2 = TextEditingController();
   bool _mostrar_progress = false;
   String _mensagem_de_erro = "";
 
-  criarLinkEncurtado(chave, url) async {
+  criarNovaPagina(inputText) async {
+
     setState(() {
       _mostrar_progress = true;
       _mensagem_de_erro = "";
     });
 
-    var response = await ShortLink.encurtarLink(chave, url);
+    var response = await Pages.criarPagina(inputText);
 
     setState(() {
       _mostrar_progress = false;
 
+      print(response.body.toString());
+
       if(response.ok == true){
-        Navigator.pushReplacementNamed(context, '/shortlinks');
+        Navigator.pop(context);
       }
       else{
-        if(response.body!["message"] != null){
-          Map responseJson = json.decode(utf8.decode(response.response!.bodyBytes));
+        if(response.body!["message"] != null) {
+          Map responseJson = json.decode(
+              utf8.decode(response.response!.bodyBytes));
           _mensagem_de_erro = responseJson["message"];
-        } else {
-          _mensagem_de_erro = "Ocorreu um erro, tente novamente";
         }
       }
     });
@@ -64,7 +63,7 @@ class _NovoLinkState extends State<NovoLink> {
                 ),
 
                 const Text(
-                  'Digite a chave para criação do seu novo link e uma url válida, iniciada com https:// ou http://',
+                  'Crie sua página',
                   style: TextStyle(color: Colors.white),
                 ),
 
@@ -73,13 +72,8 @@ class _NovoLinkState extends State<NovoLink> {
                 ),
 
                 InputTexto(
-                  'Chave...',
+                  'Escolha um @criativo...',
                   controlador: controlador1,
-                ),
-
-                InputTexto(
-                  'URL...',
-                  controlador: controlador2,
                 ),
 
                 const SizedBox(
@@ -102,7 +96,7 @@ class _NovoLinkState extends State<NovoLink> {
                   mostrar_progress: _mostrar_progress,
                   ao_clicar: (){
                     if(formkey.currentState?.validate() == true){
-                      criarLinkEncurtado(controlador1.text, controlador2.text);
+                      criarNovaPagina(controlador1.text);
                     }
                   },
                 )

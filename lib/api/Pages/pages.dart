@@ -5,6 +5,34 @@ import 'package:shortlink/preferences/User.dart';
 
 class Pages{
 
+  static Future<ApiResponse<String>> criarPagina(nome) async {
+    try {
+      String _url = "https://api.olhai.me/v1/pages";
+      Map params = {
+        "pagename": nome,
+      };
+      var body = json.encode(params);
+      final _uri = Uri.parse(_url);
+
+      Future<Map?> usuario = Usuario.obter();
+      return usuario.then( (value) async {
+        var response = await http.post(
+          _uri, body: body, headers: {
+          "Content-Type": "application/json",
+          "Token": value?["token"],
+        },
+        );
+
+        if(response.statusCode == 200) {
+          return ApiResponse.ok(response.body, response: response);
+        }
+        return ApiResponse.error(response.body, response: response);
+      });
+    } catch (erro){
+      return ApiResponse.error(erro.toString());
+    }
+  }
+
   static Future<List<dynamic>> listarPaginas() async {
     try {
       String _url = "https://api.olhai.me/v1/pages";
@@ -40,6 +68,7 @@ class Pages{
       var body = json.encode(params);
       final _uri = Uri.parse(_url);
 
+
       Future<Map?> usuario = Usuario.obter();
       return usuario.then( (value) async {
         var response = await http.put(
@@ -59,4 +88,6 @@ class Pages{
       return ApiResponse.error(erro.toString());
     }
   }
+
+
 }

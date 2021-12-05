@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shortlink/api/Pages/pages.dart';
 import 'package:shortlink/components/Menu/index.dart';
+import 'package:shortlink/pages/Home/NovaPagina.dart';
 
 import 'CardPage.dart';
 
@@ -38,7 +39,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     setState(() {
       _loader_links = true;
@@ -51,6 +51,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: const Menu(),
       appBar: AppBar(title: const Text('Home'),),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (BuildContext context) => const NovaPagina()
+            ),
+          );
+        },
+      ),
       body: RefreshIndicator(
         onRefresh: listarPaginas,
         child: Container(
