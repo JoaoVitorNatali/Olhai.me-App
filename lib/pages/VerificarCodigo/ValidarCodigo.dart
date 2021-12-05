@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import "package:flutter/material.dart";
@@ -37,7 +38,9 @@ class _EnviarCodigoState extends State<EnviarCodigo> {
     });
 
     if(response.ok == true){
-      Usuario.salvar(response.body);
+      Map responseJson = json.decode(utf8.decode(response.response!.bodyBytes));
+
+      Usuario.salvar(responseJson);
 
       if(response.body?["is_new_user"] == true){
         Navigator.push(context, MaterialPageRoute(

@@ -17,7 +17,7 @@ class Usuario{
     return user;
   }
 
-  void limpar(){
+  static void limpar(){
     Prefs.setString("user.prefs", "");
   }
 }

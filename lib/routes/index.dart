@@ -6,7 +6,7 @@ import 'package:shortlink/pages/ShortLinks/index.dart';
 
 
 class Routes extends StatefulWidget {
-  const Routes({Key? key}) : super(key: key);
+  const Routes({Key? key}) : super(key: key );
 
   @override
   _RoutesState createState() => _RoutesState();

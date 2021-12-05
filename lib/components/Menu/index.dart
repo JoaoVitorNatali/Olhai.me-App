@@ -1,4 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+
+import '../../preferences/User.dart';
 
 class Menu extends StatefulWidget {
   const Menu({Key? key}) : super(key: key);
@@ -8,29 +12,49 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+
+  late String _userName = "";
+  late String _email = "";
+
+  carregarUsuario() async {
+    final Map? usuario = await Usuario.obter();
+
+    setState(() {
+      _userName = usuario?["user"]?["name"];
+      _email = usuario?["user"]?["access_pass"]?[0]?["pass"];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    carregarUsuario();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
 
         child: Column(
             children: [
-              const UserAccountsDrawerHeader(
-                currentAccountPicture: Icon(Icons.account_circle, size: 80),
-                accountName: Text('Teste'),
-                accountEmail: Text(''),
+              UserAccountsDrawerHeader(
+                currentAccountPicture: const Icon(Icons.account_circle, size: 80),
+                accountName: Text(_userName),
+                accountEmail: Text(_email),
               ),
               ListTile(
-                leading: Icon(Icons.home),
-                title: Text('inicio'),
-                subtitle: Text('tela de inicio'),
+                leading: const Icon(Icons.home),
+                title: const Text('inicio'),
+                subtitle: const Text('tela de inicio'),
                 onTap: () {
                   Navigator.pushReplacementNamed(context, "/");
                 }
               ),
               ListTile(
-                leading: Icon(Icons.link),
-                title: Text('Encurtador'),
-                subtitle: Text('Encurtador de links'),
+                leading: const Icon(Icons.link),
+                title: const Text('Encurtador'),
+                subtitle: const Text('Encurtador de links'),
                 onTap: () {
                   Navigator.pushReplacementNamed(context, "/shortlinks");
                 }

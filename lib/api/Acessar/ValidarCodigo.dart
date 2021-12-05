@@ -20,7 +20,7 @@ class ValidarCodigoService{
 
       if(response.statusCode == 200) {
         Map data = json.decode(response.body);
-        return ApiResponse.ok(response.body);
+        return ApiResponse.ok(response.body, response: response);
       }
       return ApiResponse.error(response.body);
     }
