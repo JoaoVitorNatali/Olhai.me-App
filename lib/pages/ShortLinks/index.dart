@@ -17,11 +17,19 @@ class ShortLinksPage extends StatefulWidget {
 
 class _ShortLinksState extends State<ShortLinksPage> {
   bool _nenhum_link = true;
+  bool _loader_links = true;
   List<dynamic>? colecao;
 
   listarColecao() async{
-    var response = await ShortLink.listarLinks();
+
     setState(() {
+      _loader_links = true;
+    });
+
+    var response = await ShortLink.listarLinks();
+
+    setState(() {
+      _loader_links = false;
       colecao = response;
       if(colecao!.length > 0){
         _nenhum_link = false;
@@ -63,25 +71,34 @@ class _ShortLinksState extends State<ShortLinksPage> {
                 height: 20
             ),
 
-            _nenhum_link ? const Text(
-              'Não há nada por aqui no momento!',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.center,
-            ) : ListView.builder(
-                  itemCount: colecao != null ? colecao!.length : 0,
-                  shrinkWrap: true,
-                  physics: const ScrollPhysics(),
-                  itemBuilder: (context, index){
-                    return CardLink(
-                      id: colecao![index]["id"].toString(),
-                      name: colecao![index]["name"].toString(),
-                      url: colecao![index]["url"].toString(),
-                    );
-                  }
-              ),
+            !_loader_links ? (
+
+              _nenhum_link ? const Text(
+                'Não há nada por aqui no momento!',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ) : ListView.builder(
+                    itemCount: colecao != null ? colecao!.length : 0,
+                    shrinkWrap: true,
+                    physics: const ScrollPhysics(),
+                    itemBuilder: (context, index){
+                      return CardLink(
+                        id: colecao![index]["id"].toString(),
+                        name: colecao![index]["name"].toString(),
+                        url: colecao![index]["url"].toString(),
+                        listar: listarColecao,
+                      );
+                    }
+                )
+            ) : const Center(
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                )
+            )
           ],
         ),
       ),

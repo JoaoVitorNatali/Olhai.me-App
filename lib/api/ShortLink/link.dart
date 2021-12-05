@@ -58,19 +58,22 @@ class ShortLink{
 
   static Future<ApiResponse<String>> excluirLink(id) async{
     try {
-      String _url = "https://api.olhai.me/v1/shortlinks/${id}";
+      String _url = "https://api.olhai.me/v1/shortlinks/$id";
       final _uri = Uri.parse(_url);
 
       Future<Map?> usuario = Usuario.obter();
       return usuario.then( (value) async {
-        var response = await http.get(
+        var response = await http.delete(
           _uri, headers: {
             "Content-Type": "application/json",
             "Token": value?["token"],
           },
         );
 
-        return ApiResponse.ok(response.body);
+        if(response.statusCode == 204){
+          return ApiResponse.ok(response.body);
+        }
+        return ApiResponse.error(response.body);
       });
     } catch (erro){
       return ApiResponse.error(erro.toString());

@@ -7,10 +7,17 @@ import 'package:shortlink/components/Button/BtnDanger.dart';
 import 'package:shortlink/pages/ShortLinks/ModalExcluirLink.dart';
 
 class CardLink extends StatefulWidget {
-  const CardLink({Key? key, required this.id, required this.name, required this.url}) : super(key: key);
+  const CardLink({
+    Key? key,
+    required this.id,
+    required this.name,
+    required this.url,
+    required this.listar,
+  }) : super(key: key);
   final String id;
   final String name;
   final String url;
+  final Function listar;
 
   @override
   _CardLinkState createState() => _CardLinkState();
@@ -62,7 +69,7 @@ class _CardLinkState extends State<CardLink> {
                             BtnDanger("Excluir", ao_clicar: (){
                               showCupertinoModalBottomSheet(
                                   context: context,
-                                  builder: (context) => ModalExcluirLink(id: widget.id)
+                                  builder: (context) => ModalExcluirLink(id: widget.id, listar: widget.listar)
                               );
                             }),
                           ],

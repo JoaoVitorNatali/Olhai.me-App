@@ -1,11 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shortlink/components/Button/BtnDanger.dart';
 import 'package:shortlink/api/ShortLink/link.dart';
 
 class ModalExcluirLink extends StatefulWidget {
-  const ModalExcluirLink({Key? key, required this.id}) : super(key: key);
+  const ModalExcluirLink({Key? key, required this.id, required this.listar}) : super(key: key);
   final String id;
+  final Function listar;
 
   @override
   _ModalExcluirLinkState createState() => _ModalExcluirLinkState();
@@ -13,12 +16,24 @@ class ModalExcluirLink extends StatefulWidget {
 
 class _ModalExcluirLinkState extends State<ModalExcluirLink> {
 
+  bool _loader_excluir = false;
+
   excluirLink() async{
+    setState(() {
+      _loader_excluir = true;
+    });
     var response = await ShortLink.excluirLink(widget.id);
 
-    if(response.ok == true){
+    setState(() {
+      _loader_excluir = false;
+      log(response.toString());
+      if(response.ok == true){
 
-    }
+        widget.listar();
+        Navigator.pop(context);
+      }
+    });
+
   }
 
   @override
@@ -44,7 +59,7 @@ class _ModalExcluirLinkState extends State<ModalExcluirLink> {
             const SizedBox(height: 40),
 
             Center(
-              child: BtnDanger('Confirmar', ao_clicar: (){
+              child: BtnDanger('Confirmar', mostrar_progress: _loader_excluir, ao_clicar: (){
                 excluirLink();
               }),
             ),
