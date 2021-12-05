@@ -63,6 +63,14 @@ class _MenuState extends State<Menu> {
                   leading: Icon(Icons.settings),
                   title: Text('Minha Conta'),
                   subtitle: Text('Configurar perfil'),
+              ),
+              ListTile(
+                leading: const Icon(Icons.logout),
+                title: const Text('Sair'),
+                subtitle: const Text('Deslogar usuário'),
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, "/logout");
+                },
               )
             ]
         )
