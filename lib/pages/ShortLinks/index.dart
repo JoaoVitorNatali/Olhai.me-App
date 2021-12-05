@@ -1,9 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:shortlink/components/Menu/index.dart';
-import 'package:shortlink/components/Input/InputTexto.dart';
-import 'package:shortlink/components/Button/BtnPrimary.dart';
 import 'novolink.dart';
 import 'package:shortlink/api/ShortLink/link.dart';
 import 'CardLink.dart';
