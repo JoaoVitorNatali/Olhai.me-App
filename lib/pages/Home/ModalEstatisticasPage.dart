@@ -14,11 +14,13 @@ class _ModalEstatisticasPageState extends State<ModalEstatisticasPage> {
   String _data_final = "";
   int _visitas = 0;
   int _usuarios = 0;
+  bool _load = false;
 
   listarVisitas() async {
     var response = await Visitas.listarVisitas(widget.id);
 
     setState(() {
+      _load = false;
       for (var element in response) {
         _visitas += int.parse(element["visits"].toString());
         _usuarios = int.parse(element["unique_visits"].toString());
@@ -32,7 +34,10 @@ class _ModalEstatisticasPageState extends State<ModalEstatisticasPage> {
   @override
   void initState() {
     super.initState();
-    listarVisitas();
+    setState(() {
+      _load = true;
+      listarVisitas();
+    });
   }
 
   @override
@@ -40,7 +45,12 @@ class _ModalEstatisticasPageState extends State<ModalEstatisticasPage> {
     return Container(
       height: MediaQuery.of(context).size.height * 0.7,
       padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
-      child: ListView(
+      child: _load ? const Center(
+        child: CircularProgressIndicator(
+          strokeWidth: 2,
+          valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+        ),
+      ) : ListView(
 
         children: [
           Center(
