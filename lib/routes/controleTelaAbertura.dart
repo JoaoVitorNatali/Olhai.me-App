@@ -28,7 +28,7 @@ class _TelaAberturaState extends State<TelaAbertura> {
       else{
         Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (BuildContext context) => const Cadastro(title: 'Shortlink'))
+            MaterialPageRoute(builder: (BuildContext context) => const Cadastro(title: 'Olhai.me'))
         )
       }
     });

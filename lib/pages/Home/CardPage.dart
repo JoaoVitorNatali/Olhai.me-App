@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shortlink/components/Button/BtnHibrido.dart';
 import 'package:shortlink/components/Modal/CompartilharLink.dart';
+import 'package:shortlink/pages/Home/EditarPagina.dart';
 import 'package:shortlink/pages/Home/ModalEstatisticasPage.dart';
 import 'package:shortlink/pages/Home/ModalOcultarPagina.dart';
 import 'package:shortlink/pages/Home/WebViewPage.dart';
@@ -113,7 +114,12 @@ class _CardPageState extends State<CardPage> {
                     flex: 6,
                     child: Container(
                       child: BtnPrimary("Editar", ao_clicar: (){
-
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => EditarPagina(nome: widget.name,)
+                          ),
+                        );
                       }),
                     ),
                   ),
