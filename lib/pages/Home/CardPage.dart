@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:shortlink/components/Button/BtnHibrido.dart';
 import 'package:shortlink/components/Modal/CompartilharLink.dart';
 import 'package:shortlink/pages/Home/ModalEstatisticasPage.dart';
+import 'package:shortlink/pages/Home/ModalOcultarPagina.dart';
 import 'package:shortlink/pages/Home/WebViewPage.dart';
 
 import '../../components/Button/BtnDanger.dart';
@@ -9,17 +11,19 @@ import '../../components/Button/BtnPrimary.dart';
 import 'ModalExcluirPagina.dart';
 
 class CardPage extends StatefulWidget {
-  const CardPage({Key? key, required this.id, required this.name, required this.listar}) : super(key: key);
+  const CardPage({Key? key, required this.id, required this.name, required this.listar, required this.status}) : super(key: key);
 
   final String id;
   final String name;
   final Function listar;
+  final String status;
 
   @override
   _CardPageState createState() => _CardPageState();
 }
 
 class _CardPageState extends State<CardPage> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -108,10 +112,43 @@ class _CardPageState extends State<CardPage> {
                   Expanded(
                     flex: 6,
                     child: Container(
+                      child: BtnPrimary("Editar", ao_clicar: (){
+
+                      }),
+                    ),
+                  ),
+
+
+                ],
+              ),
+
+              Row(
+                children: [
+
+                  Expanded(
+                    flex: 6,
+                    child: Container(
                       child: BtnDanger("Excluir", ao_clicar: (){
                         showCupertinoModalBottomSheet(
                             context: context,
                             builder: (context) => ModalExcluirPagina(id: widget.id, listar: widget.listar)
+                        );
+                      }),
+                    ),
+                  ),
+
+                  const SizedBox(width: 10,),
+
+                  Expanded(
+                    flex: 6,
+                    child: Container(
+                      child: BtnHibrido(
+                        widget.status == "pub" ? "Ocultar" : "Publicar",
+                        color: widget.status == "pub" ? Colors.red : Colors.blueAccent,
+                        ao_clicar: (){
+                        showCupertinoModalBottomSheet(
+                            context: context,
+                            builder: (context) => ModalOcultarPagina(id: widget.id, listar: widget.listar)
                         );
                       }),
                     ),

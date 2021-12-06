@@ -90,5 +90,32 @@ class Pages{
     }
   }
 
+  static Future<ApiResponse<String>> ocultarPagina(id) async{
+    try {
+      String _url = "https://api.olhai.me/v1/pages/status";
+      Map params = {
+        "id": id,
+        "status": "pri"
+      };
+      var body = json.encode(params);
+      final _uri = Uri.parse(_url);
 
+      Future<Map?> usuario = Usuario.obter();
+      return usuario.then( (value) async {
+        var response = await http.put(
+          _uri, body: body, headers: {
+            "Content-Type": "application/json",
+            "Token": value?["token"],
+          },
+        );
+
+        if(response.statusCode == 204){
+          return ApiResponse.ok(response.body);
+        }
+        return ApiResponse.error(response.body);
+      });
+    } catch (erro){
+      return ApiResponse.error(erro.toString());
+    }
+  }
 }

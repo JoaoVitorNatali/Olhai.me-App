@@ -91,6 +91,7 @@ class _HomePageState extends State<HomePage> {
                         return CardPage(
                           id: paginas![index]["id"].toString(),
                           name: paginas![index]["name"].toString(),
+                          status: paginas![index]["status"].toString(),
                           listar: listarPaginas
                         );
                       }
