@@ -5,9 +5,10 @@ import 'package:shortlink/components/Button/BtnDanger.dart';
 import 'package:shortlink/api/Pages/pages.dart';
 
 class ModalOcultarPagina extends StatefulWidget {
-  const ModalOcultarPagina({Key? key, required this.id, required this.listar}) : super(key: key);
+  const ModalOcultarPagina({Key? key, required this.id, required this.listar, required this.status}) : super(key: key);
   final String id;
   final Function listar;
+  final String status;
 
   @override
   _ModalOcultarPaginaState createState() => _ModalOcultarPaginaState();
@@ -16,14 +17,13 @@ class ModalOcultarPagina extends StatefulWidget {
 class _ModalOcultarPaginaState extends State<ModalOcultarPagina> {
 
   bool _loader = false;
+  String _texto = "";
 
   ocultarPagina() async{
     setState(() {
       _loader = true;
     });
     var response = await Pages.ocultarPagina(widget.id);
-
-    print(response.body.toString());
 
     setState(() {
       _loader = false;
@@ -32,7 +32,15 @@ class _ModalOcultarPaginaState extends State<ModalOcultarPagina> {
         Navigator.pop(context);
       }
     });
+  }
 
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      if(widget.status == "pub") _texto = "ocultar";
+      else _texto = "publicar";
+    });
   }
 
   @override
@@ -45,9 +53,9 @@ class _ModalOcultarPaginaState extends State<ModalOcultarPagina> {
           children: [
             const SizedBox(height: 40),
 
-            const Text(
-              'Deseja mesmo ocultar a página?',
-              style: TextStyle(
+            Text(
+              'Deseja mesmo $_texto a página?',
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.black,
                 decoration: TextDecoration.none,

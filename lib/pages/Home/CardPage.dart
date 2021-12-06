@@ -154,7 +154,7 @@ class _CardPageState extends State<CardPage> {
                         ao_clicar: (){
                         showCupertinoModalBottomSheet(
                             context: context,
-                            builder: (context) => ModalOcultarPagina(id: widget.id, listar: widget.listar)
+                            builder: (context) => ModalOcultarPagina(id: widget.id, listar: widget.listar, status: widget.status)
                         );
                       }),
                     ),
