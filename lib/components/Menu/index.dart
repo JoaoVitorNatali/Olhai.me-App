@@ -59,10 +59,13 @@ class _MenuState extends State<Menu> {
                   Navigator.pushReplacementNamed(context, "/shortlinks");
                 }
               ),
-              const ListTile(
-                  leading: Icon(Icons.settings),
-                  title: Text('Minha Conta'),
-                  subtitle: Text('Configurar perfil'),
+              ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text('Minha Conta'),
+                subtitle: const Text('Configurar perfil'),
+                onTap: (){
+                  Navigator.pushReplacementNamed(context, "/account");
+                },
               ),
               ListTile(
                 leading: const Icon(Icons.logout),
@@ -71,7 +74,7 @@ class _MenuState extends State<Menu> {
                 onTap: () {
                   Navigator.pushReplacementNamed(context, "/logout");
                 },
-              )
+              ),
             ]
         )
     );

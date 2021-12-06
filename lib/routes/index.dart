@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:shortlink/pages/Home/index.dart';
 import 'package:shortlink/pages/ShortLinks/index.dart';
 import 'package:shortlink/pages/Logout/index.dart';
+import 'package:shortlink/pages/Account/index.dart';
 
 
 class Routes extends StatefulWidget {
@@ -29,6 +30,7 @@ class _RoutesState extends State<Routes> {
         '/': (context) => HomePage(),
         '/shortlinks': (context) => ShortLinksPage(),
         '/logout': (context) => Logout(),
+        '/account': (context) => Account(),
       },
     );
   }

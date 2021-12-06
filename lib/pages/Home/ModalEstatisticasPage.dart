@@ -102,10 +102,6 @@ class _ModalEstatisticasPageState extends State<ModalEstatisticasPage> {
               ),
             )
           ),
-
-
-
-
         ],
       ),
     );
