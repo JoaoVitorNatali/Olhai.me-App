@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shortlink/components/Modal/CompartilharLink.dart';
+import 'package:shortlink/pages/Home/ModalEstatisticasPage.dart';
+import 'package:shortlink/pages/Home/WebViewPage.dart';
 
 import '../../components/Button/BtnDanger.dart';
 import '../../components/Button/BtnPrimary.dart';
@@ -25,71 +27,100 @@ class _CardPageState extends State<CardPage> {
       child: Card(
         color: Colors.black,
         child: Padding(
-          padding: EdgeInsets.all(16),
-          child: Row(
+          padding: const EdgeInsets.all(16),
+          child: Column(
             children: [
-              Expanded(
-                flex: 6,
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Column(
-                    children: [
-                      Text(
-                        "@${widget.name}",
-                        style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 18
-                        ),
-                        textAlign: TextAlign.left,
-                      )
-                    ],
-                  ),
-                )
-              ),
-
-
-              Expanded(
-                  flex: 4,
-                  child: Container(
-                    padding: const EdgeInsets.only(right: 5),
-                    child: Column(
+              Row(
+                children: [
+                  Column(
                       children: [
-                        Row(
-                          children: [
-                            BtnPrimary("Compartilhar", ao_clicar: (){
-                              showCupertinoModalBottomSheet(
-                                  context: context,
-                                  builder: (context) => Scaffold(
-                                    body: CompartilharLink(title: widget.name, compartilhar: "go.olhai.me/${widget.name}"),
-                                  )
-                              );
-                            }),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                BtnDanger("Excluir", ao_clicar: (){
-                                  showCupertinoModalBottomSheet(
-                                      context: context,
-                                      builder: (context) => ModalExcluirPagina(id: widget.id, listar: widget.listar)
-                                  );
-                                }),
-                              ],
-                            )
-                          ],
+                        GestureDetector(
+                          child: Text(
+                            "@${widget.name}",
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 24
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
                         )
-                      ],
-                    ),
-                  )
+                      ]),
+                  ]
               ),
 
+              const SizedBox(height: 30,),
+
+              Row(
+                children: [
+                  Expanded(
+                    flex: 6,
+                    child: Container(
+                      child:
+                        BtnPrimary("Visitar", ao_clicar: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => WebViewPage(link: "https://${widget.name}.olhai.me")
+                            ),
+                          );
+                        }),
+
+                    ),
+                  ),
+
+                  const SizedBox(width: 10,),
+
+                  Expanded(
+                    flex: 6,
+                    child: Container(
+                      child:
+                        BtnPrimary("Compartilhar", ao_clicar: (){
+                          showCupertinoModalBottomSheet(
+                              context: context,
+                              builder: (context) => Scaffold(
+                                body: CompartilharLink(title: widget.name, compartilhar: "go.olhai.me/${widget.name}"),
+                              )
+                          );
+                        }),
+
+                    ),
+                  ),
+                ],
+              ),
+
+              Row(
+                children: [
+
+                  Expanded(
+                    flex: 6,
+                    child: Container(
+                      child: BtnPrimary("Estatísticas", ao_clicar: (){
+                        showCupertinoModalBottomSheet(
+                            context: context,
+                            builder: (context) => ModalEstatisticasPage(id: widget.id)
+                        );
+                      }),
+                    ),
+                  ),
+
+                  const SizedBox(width: 10,),
+
+                  Expanded(
+                    flex: 6,
+                    child: Container(
+                      child: BtnDanger("Excluir", ao_clicar: (){
+                        showCupertinoModalBottomSheet(
+                            context: context,
+                            builder: (context) => ModalExcluirPagina(id: widget.id, listar: widget.listar)
+                        );
+                      }),
+                    ),
+                  ),
 
 
-
-            ],
-          ),
+                ],
+              )
+          ])
         ),
       ),
     );
