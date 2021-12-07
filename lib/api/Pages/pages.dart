@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shortlink/api/ResponseApi.dart';
 import 'package:shortlink/preferences/User.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class Pages{
 

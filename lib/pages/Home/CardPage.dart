@@ -117,7 +117,7 @@ class _CardPageState extends State<CardPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => EditarPagina(nome: widget.name,)
+                              builder: (BuildContext context) => EditarPagina(nome: widget.name, id: widget.id)
                           ),
                         );
                       }),
