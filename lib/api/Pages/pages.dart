@@ -93,12 +93,12 @@ class Pages{
     }
   }
 
-  static Future<ApiResponse<String>> ocultarPagina(id) async{
+  static Future<ApiResponse<String>> ocultarPagina(id, status) async{
     try {
       String _url = "https://api.olhai.me/v1/pages/status";
       Map params = {
-        "id": id,
-        "status": "pri"
+        "id": int.parse(id),
+        "status": status
       };
       var body = json.encode(params);
       final _uri = Uri.parse(_url);

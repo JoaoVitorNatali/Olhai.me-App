@@ -23,7 +23,8 @@ class _ModalOcultarPaginaState extends State<ModalOcultarPagina> {
     setState(() {
       _loader = true;
     });
-    var response = await Pages.ocultarPagina(widget.id);
+    String _status_oposto = widget.status == "pub" ? "pri" : "pub";
+    var response = await Pages.ocultarPagina(widget.id, _status_oposto);
 
     setState(() {
       _loader = false;

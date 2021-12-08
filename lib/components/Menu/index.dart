@@ -39,14 +39,14 @@ class _MenuState extends State<Menu> {
         child: Column(
             children: [
               UserAccountsDrawerHeader(
-                currentAccountPicture: const Icon(Icons.account_circle, size: 80),
+
                 accountName: Text(_userName),
                 accountEmail: Text(_email),
               ),
               ListTile(
                 leading: const Icon(Icons.home),
-                title: const Text('inicio'),
-                subtitle: const Text('tela de inicio'),
+                title: const Text('Páginas'),
+                subtitle: const Text('Minhas páginas'),
                 onTap: () {
                   Navigator.pushReplacementNamed(context, "/");
                 }

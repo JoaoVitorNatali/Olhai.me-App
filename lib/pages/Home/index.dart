@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const Menu(),
-      appBar: AppBar(title: const Text('Home'),),
+      appBar: AppBar(title: const Text('Listagem de páginas'),),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
