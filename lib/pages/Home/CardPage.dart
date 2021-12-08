@@ -110,7 +110,7 @@ class _CardPageState extends State<CardPage> {
                             context: context,
                             builder: (context) => Container(
                               height: MediaQuery.of(context).size.height * 0.5,
-                              padding: const EdgeInsets.all(16),
+                              padding: const EdgeInsets.symmetric(vertical: 36, horizontal: 36),
                               child: ListView(
                                 children: [
                                   Row(
@@ -130,9 +130,11 @@ class _CardPageState extends State<CardPage> {
 
                                         ),
                                       ),
+                                    ],
+                                  ),
 
-                                      const SizedBox(width: 10,),
-
+                                  Row(
+                                    children: [
                                       Expanded(
                                         flex: 6,
                                         child: Container(
@@ -165,8 +167,11 @@ class _CardPageState extends State<CardPage> {
                                           }),
                                         ),
                                       ),
+                                    ],
+                                  ),
 
-                                      const SizedBox(width: 10,),
+                                  Row(
+                                    children: [
 
                                       Expanded(
                                         flex: 6,
@@ -201,7 +206,11 @@ class _CardPageState extends State<CardPage> {
                                         ),
                                       ),
 
-                                      const SizedBox(width: 10,),
+                                    ],
+                                  ),
+
+                                  Row(
+                                    children: [
 
                                       Expanded(
                                         flex: 6,
@@ -220,7 +229,7 @@ class _CardPageState extends State<CardPage> {
 
 
                                     ],
-                                  )
+                                  ),
                                 ],
                               )
                             ),
