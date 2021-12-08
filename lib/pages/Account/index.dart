@@ -31,6 +31,14 @@ class _AccountState extends State<Account> {
     });
   }
 
+  _setar_mudancas_usuario(nome) async {
+    Map? usuario = await Usuario.obter();
+
+    usuario?["user"]?["name"] = nome;
+    
+    Usuario.salvar(usuario);
+  }
+
   atualizarNomeUsuario(nomeUsuario) async {
 
     setState(() {
@@ -41,6 +49,7 @@ class _AccountState extends State<Account> {
 
     setState(() {
       _mostrar_progress = false;
+      if(response.ok == true) _setar_mudancas_usuario(nomeUsuario);
     });
   }
 
