@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import 'package:flutter/services.dart';
 
 class InputTexto extends StatelessWidget {
 
@@ -11,7 +12,9 @@ class InputTexto extends StatelessWidget {
   FocusNode? marcador_foco;
   FocusNode? recebedor_foco;
   late int max_length;
+  late int max_lines;
   Function(String)? onChanged;
+  late bool validar;
 
 
   InputTexto(
@@ -24,11 +27,13 @@ class InputTexto extends StatelessWidget {
         this.teclado = TextInputType.text,
         this.marcador_foco = null,
         this.recebedor_foco = null,
-        this.max_length = 60,
+        this.max_length = 80,
         this.onChanged = null,
+        this.max_lines = 1,
+        this.validar = true
       }
   ){
-    if(this.validator == null){
+    if(this.validator == null && this.validar == true){
       this.validator = (String? text){
         if(text!.isEmpty)
           return "O campo $texto_label é obrigatório";
@@ -50,18 +55,44 @@ class InputTexto extends StatelessWidget {
         FocusScope.of(context).requestFocus(recebedor_foco);
       },
       onChanged: onChanged,
-      style: TextStyle(
+      style: const TextStyle(
         fontSize: 20,
-        color: Colors.grey,
+        color: Colors.white,
       ),
       decoration: InputDecoration(
+        counterStyle: const TextStyle(
+          color: Colors.white
+        ),
+        enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(
+              color: Colors.white,
+              width: 2,
+          ),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.purple,
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(14),
+        ),
         labelText: texto_label,
-        labelStyle: TextStyle(
+        hintStyle: const TextStyle(
           fontSize: 20,
-          color: Colors.grey,
+          color: Colors.white,
+        ),
+        floatingLabelStyle: const TextStyle(
+          fontSize: 20,
+          color: Colors.white,
+        ),
+        labelStyle: const TextStyle(
+          fontSize: 20,
+          color: Colors.white,
         ),
       ),
       maxLength: max_length,
+      maxLines: max_lines,
     );
   }
 }

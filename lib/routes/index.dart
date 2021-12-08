@@ -24,6 +24,7 @@ class _RoutesState extends State<Routes> {
       title: title,
       theme: ThemeData(
         primarySwatch: Colors.purple,
+
       ),
       initialRoute: '/',
       routes: {

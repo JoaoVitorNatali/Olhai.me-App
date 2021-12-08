@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shortlink/components/Button/BtnHibrido.dart';
 import 'package:shortlink/components/Modal/CompartilharLink.dart';
-import 'package:shortlink/pages/Home/EditarPagina.dart';
+import 'package:shortlink/pages/EditarPagina/index.dart';
 import 'package:shortlink/pages/Home/ModalEstatisticasPage.dart';
 import 'package:shortlink/pages/Home/ModalOcultarPagina.dart';
 import 'package:shortlink/pages/Home/WebViewPage.dart';
