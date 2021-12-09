@@ -44,7 +44,7 @@ dependencies:
 
 
 flutter_icons:
-  image_path: "assets/images/favicon-32x32.png"
+  image_path: "assets/images/logo-Olhai-0.png"
   android: "launcher_icon"
   ios: true
 

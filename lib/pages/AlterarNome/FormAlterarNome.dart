@@ -28,7 +28,7 @@ class _FormAlterarNomeState extends State<FormAlterarNome> {
     Usuario.salvar(usuario);
 
     Navigator.pushReplacement(context, MaterialPageRoute(
-        builder: (context) => Routes()
+        builder: (context) => const Routes()
     ));
   }
 

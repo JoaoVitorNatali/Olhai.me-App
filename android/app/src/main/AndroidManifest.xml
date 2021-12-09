@@ -2,7 +2,6 @@
     package="com.example.shortlink">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"/>
-    <category android:name="android.intent.category.DEFAULT" />
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />

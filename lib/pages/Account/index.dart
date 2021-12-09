@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shortlink/api/Usuario/Usuario.dart';
 import 'package:shortlink/components/Button/BtnPrimary.dart';
 import 'package:shortlink/components/Input/InputTexto.dart';
 import 'package:shortlink/components/Menu/index.dart';
 import 'package:shortlink/pages/Account/CardPasses.dart';
+import 'package:shortlink/pages/Account/ModalAdicionarPasse.dart';
 import 'package:shortlink/preferences/User.dart';
 
 class Account extends StatefulWidget {
@@ -91,6 +93,8 @@ class _AccountState extends State<Account> {
                   controlador: controlador1,
                 ),
 
+                const SizedBox(height: 15,),
+
                 BtnPrimary(
                     "Atualizar",
                     mostrar_progress: _mostrar_progress,
@@ -136,6 +140,20 @@ class _AccountState extends State<Account> {
                     )
                 ),
 
+
+                
+                Container(
+                  margin: const EdgeInsets.only(top: 20),
+                  child: BtnPrimary(
+                    "Adicionar passe de acesso",
+                    ao_clicar: (){
+                      showCupertinoModalBottomSheet(
+                          context: context,
+                          builder: (context) => ModalAdicionarPasse(listar: listarPasses)
+                      );
+                    },
+                  ),
+                ),
 
               ]
             ),

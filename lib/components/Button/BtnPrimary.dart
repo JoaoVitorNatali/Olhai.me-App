@@ -21,6 +21,9 @@ class BtnPrimary extends StatelessWidget {
     return ElevatedButton(
       onPressed: ao_clicar,
       focusNode: marcador_foco,
+      style: ElevatedButton.styleFrom(
+        minimumSize: const Size(100, 50)
+      ),
       child: mostrar_progress
         ? const Center(
           child: CircularProgressIndicator(
