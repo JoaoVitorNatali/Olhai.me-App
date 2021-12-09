@@ -3,9 +3,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shortlink/api/Pages/pages.dart';
 import 'package:shortlink/components/Button/BtnPrimary.dart';
 import 'package:shortlink/components/Input/InputTexto.dart';
+import 'package:shortlink/pages/EditarPagina/AdicionarRede.dart';
+import 'package:shortlink/pages/EditarPagina/CardShortCut.dart';
 
 class EditarPagina extends StatefulWidget {
   const EditarPagina({Key? key, required this.nome, required this.id}) : super(key: key);
@@ -22,6 +25,9 @@ class _EditarPaginaState extends State<EditarPagina> {
   final _localizacao = TextEditingController();
   final _descricao = TextEditingController();
   bool _load = false;
+  bool _load_redes_sociais = false;
+  bool _loadNovaRede = false;
+  List<dynamic>? shortcuts;
 
   String _url_imagem_usuario = "";
 
@@ -52,7 +58,14 @@ class _EditarPaginaState extends State<EditarPagina> {
   }
 
   Future _trazerDetalhesPagina() async{
+    setState(() {
+      _load_redes_sociais = true;
+    });
     var response = await Pages.detalharPagina(widget.id);
+
+    setState(() {
+      _load_redes_sociais = false;
+    });
 
     if(response.ok == true){
       setState(() {
@@ -63,6 +76,8 @@ class _EditarPaginaState extends State<EditarPagina> {
         if(response.body?["location"] != "") _localizacao.text = response.body?["location"];
 
         if(response.body?["profile_image_url"] != "https://static.olhai.me/public/") _url_imagem_usuario = response.body?["profile_image_url"];
+
+        if(response.body?["shortcuts"] != null) shortcuts = response.body?["shortcuts"];
       });
     }
   }
@@ -182,6 +197,59 @@ class _EditarPaginaState extends State<EditarPagina> {
                       }
                     },
                   ),
+
+                  const SizedBox(height: 38,),
+
+                  _load_redes_sociais ? const Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  ) : Container(
+                    child: shortcuts == null || shortcuts?.length == 0 ? const Center(
+                      child: Text(
+                        "Você não possue nenhuma rede social adicionada!",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ) : ListView.builder(
+                        itemCount: shortcuts != null ? shortcuts!.length : 0,
+                        shrinkWrap: true,
+                        physics: const ScrollPhysics(),
+                        itemBuilder: (context, index){
+                          return CardShortCut(
+                              id: shortcuts![index]["id"].toString(),
+                              page_id: shortcuts![index]["page_id"].toString(),
+                              name: shortcuts![index]["name"].toString(),
+                              url: shortcuts![index]["url"].toString(),
+                              listar: _trazerDetalhesPagina
+                          );
+                        }
+                    ),
+                  ),
+
+                  const SizedBox(height: 20,),
+
+                  BtnPrimary(
+                    "Adicionar rede",
+                    mostrar_progress: _loadNovaRede,
+                    ao_clicar: (){
+                      showCupertinoModalBottomSheet(
+                          context: context,
+                          builder: (context) => Container(
+                            height: MediaQuery.of(context).size.height * 0.8,
+                            color: Colors.white,
+                            child: AdicionarRede(id: widget.id, listar: _trazerDetalhesPagina),
+                          )
+                      );
+                    },
+                  ),
+
+
+                  const SizedBox(height: 38,),
                 ],
               ),
             ),
