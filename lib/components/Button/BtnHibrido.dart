@@ -25,7 +25,7 @@ class BtnHibrido extends StatelessWidget {
       focusNode: marcador_foco,
       style: ElevatedButton.styleFrom(
           primary: color,
-          minimumSize: const Size(115, 34)
+          minimumSize: const Size(100, 50)
       ),
       child: mostrar_progress
           ? const Center(

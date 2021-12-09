@@ -67,7 +67,7 @@ class Pages{
     try {
       String _url = "https://api.olhai.me/v1/pages/status";
       Map params = {
-        "id": id,
+        "id": int.parse(id),
         "status": "del"
       };
       var body = json.encode(params);

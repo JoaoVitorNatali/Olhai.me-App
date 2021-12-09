@@ -6,7 +6,8 @@ import 'package:shortlink/components/Button/BtnPrimary.dart';
 import 'package:shortlink/components/Input/InputTexto.dart';
 
 class NovaPagina extends StatefulWidget {
-  const NovaPagina({Key? key}) : super(key: key);
+  NovaPagina({Key? key, required this.listar}) : super(key: key);
+  final Function? listar;
 
   @override
   _NovaPaginaState createState() => _NovaPaginaState();
@@ -30,10 +31,9 @@ class _NovaPaginaState extends State<NovaPagina> {
     setState(() {
       _mostrar_progress = false;
 
-      print(response.body.toString());
-
       if(response.ok == true){
         Navigator.pop(context);
+        if(widget.listar != null) widget.listar!();
       }
       else{
         if(response.body!["message"] != null) {

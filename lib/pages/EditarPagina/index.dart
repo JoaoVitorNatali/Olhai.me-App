@@ -62,7 +62,7 @@ class _EditarPaginaState extends State<EditarPagina> {
 
         if(response.body?["location"] != "") _localizacao.text = response.body?["location"];
 
-        if(response.body?["profile_image_url"] != "") _url_imagem_usuario = response.body?["profile_image_url"];
+        if(response.body?["profile_image_url"] != "https://static.olhai.me/public/") _url_imagem_usuario = response.body?["profile_image_url"];
       });
     }
   }
@@ -118,7 +118,7 @@ class _EditarPaginaState extends State<EditarPagina> {
                               children: [
                                 FloatingActionButton(
                                   heroTag: "BotaoCamera",
-                                  child: const Icon(Icons.add_a_photo_outlined),
+                                  child: const Icon(Icons.add_a_photo_outlined, color: Colors.white,),
                                   onPressed: () async {
                                     var image = await ImagePicker().pickImage(
                                         source: ImageSource.camera, imageQuality: 5, maxWidth: 334, maxHeight: 334
@@ -137,7 +137,7 @@ class _EditarPaginaState extends State<EditarPagina> {
                               children: [
                                 FloatingActionButton(
                                   heroTag: "BotaoGaleria",
-                                  child: const Icon(Icons.image_search_outlined),
+                                  child: const Icon(Icons.image_search_outlined, color: Colors.white,),
                                   onPressed: () async {
                                     var image = await ImagePicker().pickImage(source: ImageSource.gallery);
                                     _salvarFotoUsuario(image);
@@ -170,6 +170,8 @@ class _EditarPaginaState extends State<EditarPagina> {
                     max_length: 200,
                     validar: false,
                   ),
+
+                  const SizedBox(height: 14,),
 
                   BtnPrimary(
                     "Salvar",

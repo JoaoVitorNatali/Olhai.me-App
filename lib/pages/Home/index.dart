@@ -22,6 +22,10 @@ class _HomePageState extends State<HomePage> {
 
   Future listarPaginas() async{
 
+    setState(() {
+      paginas = null;
+    });
+
     var response = await Pages.listarPaginas();
 
     setState(() {
@@ -39,8 +43,16 @@ class _HomePageState extends State<HomePage> {
         _nenhum_link = true;
       }
     });
-
+    return;
   }
+
+  Function? fowardListar() {
+    setState(() {
+      _loader_links = true;
+    });
+    listarPaginas();
+  }
+
 
   @override
   void initState() {
@@ -62,7 +74,7 @@ class _HomePageState extends State<HomePage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (BuildContext context) => const NovaPagina()
+                builder: (BuildContext context) => NovaPagina(listar: fowardListar)
             ),
           );
         },
@@ -97,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                           id: paginas![index]["id"].toString(),
                           name: paginas![index]["name"].toString(),
                           status: paginas![index]["status"].toString(),
-                          listar: listarPaginas
+                          listar: fowardListar
                         );
                       }
                   )

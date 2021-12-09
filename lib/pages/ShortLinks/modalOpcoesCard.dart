@@ -4,7 +4,6 @@ import 'package:shortlink/components/Button/BtnDanger.dart';
 import 'package:shortlink/components/Button/BtnPrimary.dart';
 import 'package:shortlink/components/Modal/CompartilharLink.dart';
 import 'package:shortlink/pages/ShortLinks/ModalExcluirLink.dart';
-import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ModalOpcoesCard extends StatefulWidget {
@@ -59,14 +58,14 @@ class _ModalOpcoesCardState extends State<ModalOpcoesCard> {
             BtnPrimary("Compartilhar", ao_clicar: () {
               showCupertinoModalBottomSheet(
                   context: context,
-                  builder: (context) => Scaffold(
-                    body: CompartilharLink(
+                  builder: (context) => CompartilharLink(
                         title: widget.name,
-                        compartilhar: "go.olhai.me/${widget.name}"
+                        compartilhar: "go.olhai.me/${widget.name}",
                     ),
-                  )
               );
             }),
+
+            const SizedBox(height: 15,),
 
             BtnPrimary(
               "Visitar",
@@ -75,6 +74,8 @@ class _ModalOpcoesCardState extends State<ModalOpcoesCard> {
                 _launchInBrowser(url);
               },
             ),
+
+            const SizedBox(height: 18,),
 
             BtnDanger("Excluir", ao_clicar: (){
               showCupertinoModalBottomSheet(

@@ -25,7 +25,6 @@ class CardPage extends StatefulWidget {
 }
 
 class _CardPageState extends State<CardPage> {
-
   String _url_imagem_usuario = "";
 
   Future _trazerDetalhesPagina() async{
@@ -36,6 +35,11 @@ class _CardPageState extends State<CardPage> {
         if(response.body?["profile_image_url"] != "https://static.olhai.me/public/") _url_imagem_usuario = response.body?["profile_image_url"];
       });
     }
+  }
+
+  voltarPaginaPosModal() async{
+    widget.listar();
+    Navigator.pop(context);
   }
 
   @override
@@ -110,7 +114,7 @@ class _CardPageState extends State<CardPage> {
                             context: context,
                             builder: (context) => Container(
                               color: Colors.white,
-                              height: MediaQuery.of(context).size.height * 0.5,
+                              height: MediaQuery.of(context).size.height * 0.6,
                               padding: const EdgeInsets.symmetric(vertical: 36, horizontal: 36),
                               child: ListView(
                                 children: [
@@ -134,6 +138,8 @@ class _CardPageState extends State<CardPage> {
                                     ],
                                   ),
 
+                                  const SizedBox(height: 10,),
+
                                   Row(
                                     children: [
                                       Expanded(
@@ -143,9 +149,9 @@ class _CardPageState extends State<CardPage> {
                                           BtnPrimary("Compartilhar", ao_clicar: (){
                                             showCupertinoModalBottomSheet(
                                                 context: context,
-                                                builder: (context) => Scaffold(
-                                                  body: CompartilharLink(title: widget.name, compartilhar: "go.olhai.me/${widget.name}"),
-                                                )
+                                                builder: (context) =>
+                                                  CompartilharLink(title: widget.name, compartilhar: "https://${widget.name}.olhai.me"),
+
                                             );
                                           }),
 
@@ -153,6 +159,8 @@ class _CardPageState extends State<CardPage> {
                                       ),
                                     ],
                                   ),
+
+                                  const SizedBox(height: 10,),
 
                                   Row(
                                     children: [
@@ -171,6 +179,8 @@ class _CardPageState extends State<CardPage> {
                                     ],
                                   ),
 
+                                  const SizedBox(height: 10,),
+
                                   Row(
                                     children: [
 
@@ -187,10 +197,10 @@ class _CardPageState extends State<CardPage> {
                                           }),
                                         ),
                                       ),
-
-
                                     ],
                                   ),
+
+                                  const SizedBox(height: 10,),
 
                                   Row(
                                     children: [
@@ -201,18 +211,18 @@ class _CardPageState extends State<CardPage> {
                                           child: BtnDanger("Excluir", ao_clicar: (){
                                             showCupertinoModalBottomSheet(
                                                 context: context,
-                                                builder: (context) => ModalExcluirPagina(id: widget.id, listar: widget.listar)
+                                                builder: (context) => ModalExcluirPagina(id: widget.id, listar: voltarPaginaPosModal)
                                             );
                                           }),
                                         ),
                                       ),
-
                                     ],
                                   ),
 
+                                  const SizedBox(height: 10,),
+
                                   Row(
                                     children: [
-
                                       Expanded(
                                         flex: 6,
                                         child: Container(
@@ -222,13 +232,11 @@ class _CardPageState extends State<CardPage> {
                                               ao_clicar: (){
                                                 showCupertinoModalBottomSheet(
                                                     context: context,
-                                                    builder: (context) => ModalOcultarPagina(id: widget.id, listar: widget.listar, status: widget.status)
+                                                    builder: (context) => ModalOcultarPagina(id: widget.id, listar: voltarPaginaPosModal, status: widget.status)
                                                 );
                                               }),
                                         ),
                                       ),
-
-
                                     ],
                                   ),
                                 ],
