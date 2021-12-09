@@ -15,7 +15,7 @@ class AlterarNome extends StatelessWidget {
         body: Center(
           child: Container(
             padding: const EdgeInsets.all(16),
-            color: Colors.black,
+              color: const Color(0xff5c5cb1),
               child: Center(
                 child: ListView(
                   children: [
@@ -27,7 +27,7 @@ class AlterarNome extends StatelessWidget {
                       child: Text(
                         "Informe o nome que deseja ser chamado:",
                         style: TextStyle(
-                            color: Colors.purple,
+                            color: Colors.black,
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                             overflow: TextOverflow.clip,

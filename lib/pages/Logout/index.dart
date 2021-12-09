@@ -38,7 +38,6 @@ class _LogoutState extends State<Logout> {
       appBar: AppBar(title: const Text('Logout'),),
       body: Container(
         padding: const EdgeInsets.all(16),
-        color: Colors.black,
         child: ListView(
           children: const [
             Center(

@@ -109,6 +109,7 @@ class _CardPageState extends State<CardPage> {
                         showCupertinoModalBottomSheet(
                             context: context,
                             builder: (context) => Container(
+                              color: Colors.white,
                               height: MediaQuery.of(context).size.height * 0.5,
                               padding: const EdgeInsets.symmetric(vertical: 36, horizontal: 36),
                               child: ListView(

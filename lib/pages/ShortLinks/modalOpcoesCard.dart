@@ -37,6 +37,7 @@ class _ModalOpcoesCardState extends State<ModalOpcoesCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        color: Colors.white,
         height: MediaQuery.of(context).size.height * 0.5,
         padding: const EdgeInsets.symmetric(vertical: 36, horizontal: 36),
         child: ListView(

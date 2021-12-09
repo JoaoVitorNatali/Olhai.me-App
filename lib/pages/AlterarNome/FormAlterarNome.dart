@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shortlink/components/Input/InputTexto.dart';
 import 'package:shortlink/components/Button/BtnPrimary.dart';
 import 'package:shortlink/api/Usuario/AlterarNome.dart';
+import 'package:shortlink/preferences/User.dart';
 import 'package:shortlink/routes/index.dart';
 
 class FormAlterarNome extends StatefulWidget {
@@ -19,6 +20,19 @@ class _FormAlterarNomeState extends State<FormAlterarNome> {
   bool _mostrarLoad = false;
   String _mensagemErro = "";
 
+  _setar_mudancas_usuario(nome) async {
+    Map? usuario = await Usuario.obter();
+
+    usuario?["user"]?["name"] = nome;
+
+    Usuario.salvar(usuario);
+
+    Navigator.pushReplacement(context, MaterialPageRoute(
+        builder: (context) => Routes()
+    ));
+  }
+
+
   Future<void> enviarRequisicao(username) async {
     setState(() {
       _mostrarLoad = true;
@@ -29,9 +43,7 @@ class _FormAlterarNomeState extends State<FormAlterarNome> {
       _mostrarLoad = false;
 
       if(response.ok == true){
-        Navigator.pushReplacement(context, MaterialPageRoute(
-            builder: (context) => Routes()
-        ));
+        _setar_mudancas_usuario(response.body?["name"]);
       }
       else{
         _mensagemErro = "Ocorreu um erro, tente novamente";
@@ -47,7 +59,6 @@ class _FormAlterarNomeState extends State<FormAlterarNome> {
         children: [
           InputTexto(
             'Nome de usuário',
-            max_length: 6,
             controlador: controlador1,
           ),
 

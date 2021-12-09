@@ -89,10 +89,22 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              child: Image.asset('assets/images/logo_login.png'),
+              child: Image.asset('assets/images/logo-Olhai-0.png'),
               width: 100,
-              margin: const EdgeInsets.only(bottom: 100, top: 100),
+              margin: const EdgeInsets.only(bottom: 10, top: 100),
             ),
+
+            const Center(
+              child: Text(
+                'Olhai.me',
+                style: TextStyle(
+                  fontSize: 40
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 90,),
+
             Container(
               alignment: Alignment.center,
               child: InputTexto(

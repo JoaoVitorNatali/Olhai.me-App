@@ -26,12 +26,17 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
       _loader_links = false;
-      if(response.length == 0){
-        _nenhum_link = true;
+      if(response != null) {
+        if (response.length == 0) {
+          _nenhum_link = true;
+        }
+        else {
+          _nenhum_link = false;
+          paginas = response.toList();
+        }
       }
       else{
-        _nenhum_link = false;
-        paginas = response.toList();
+        _nenhum_link = true;
       }
     });
 
@@ -52,7 +57,7 @@ class _HomePageState extends State<HomePage> {
       drawer: const Menu(),
       appBar: AppBar(title: const Text('Listagem de páginas'),),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.white,),
         onPressed: () {
           Navigator.push(
             context,
@@ -66,7 +71,7 @@ class _HomePageState extends State<HomePage> {
         onRefresh: listarPaginas,
         child: Container(
           padding: const EdgeInsets.all(16),
-          color: Colors.black87,
+
           child: ListView(
             children: [
 

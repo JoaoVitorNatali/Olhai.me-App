@@ -13,7 +13,7 @@ class AlterarNome{
       };
       var body = json.encode(params);
       final _uri = Uri.parse(_url);
-      var response = await http.post(
+      var response = await http.put(
           _uri, body: body, headers: {
             "Content-Type": "application/json",
             "Token": token,

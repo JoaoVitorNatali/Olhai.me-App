@@ -43,6 +43,7 @@ class _ModalEstatisticasPageState extends State<ModalEstatisticasPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.7,
       padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 16),
       child: _load ? const Center(

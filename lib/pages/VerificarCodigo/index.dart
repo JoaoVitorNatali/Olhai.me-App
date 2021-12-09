@@ -25,7 +25,7 @@ class _VerificarCodigoState extends State<VerificarCodigo> {
       body: Center(
         child: Container(
             padding: const EdgeInsets.all(16),
-            color: Colors.black,
+            color: Color(0xff5c5cb1),
             child: Center(
               child: ListView(
                 children: [
@@ -53,7 +53,7 @@ class _VerificarCodigoState extends State<VerificarCodigo> {
                     child: Text(
                       "${widget.user}",
                       style: const TextStyle(
-                          color: Colors.purple,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           overflow: TextOverflow.clip

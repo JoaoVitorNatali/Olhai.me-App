@@ -48,12 +48,12 @@ class _NovaPaginaState extends State<NovaPagina> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Adicionar link')),
+      appBar: AppBar(title: const Text('Criar página')),
       body: Form(
         key: formkey,
         child: Center(
           child: Container(
-            color: Colors.black,
+            color: Colors.black87,
             child: ListView(
               padding: const EdgeInsets.all(16),
               children: [

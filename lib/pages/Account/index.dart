@@ -80,7 +80,6 @@ class _AccountState extends State<Account> {
       body: Form(
         key: formkey,
         child: Container(
-          color: Colors.black87,
           padding: const EdgeInsets.all(16),
           child: RefreshIndicator(
             onRefresh: listarPasses,

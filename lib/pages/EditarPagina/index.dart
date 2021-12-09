@@ -82,7 +82,6 @@ class _EditarPaginaState extends State<EditarPagina> {
           child: Form(
             key: formkey,
             child: Container(
-              color: Colors.black87,
               child: ListView(
                 padding: const EdgeInsets.all(16),
                 children: [

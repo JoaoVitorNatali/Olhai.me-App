@@ -25,7 +25,8 @@ class _CompartilharLinkState extends State<CompartilharLink> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.8,
+      color: Colors.white,
+      height: MediaQuery.of(context).size.height * 0.6,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 40),
         child: ListView(

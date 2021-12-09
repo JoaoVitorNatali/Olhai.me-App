@@ -72,7 +72,7 @@ class InputTexto extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: const BorderSide(
-            color: Colors.purple,
+            color: Colors.white,
             width: 2,
           ),
           borderRadius: BorderRadius.circular(14),

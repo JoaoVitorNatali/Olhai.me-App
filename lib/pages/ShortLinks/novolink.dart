@@ -54,7 +54,6 @@ class _NovoLinkState extends State<NovoLink> {
         key: formkey,
         child: Center(
           child: Container(
-            color: Colors.black,
             child: ListView(
               padding: const EdgeInsets.all(16),
               children: [

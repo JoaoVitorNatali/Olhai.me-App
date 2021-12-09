@@ -37,14 +37,33 @@ class _RoutesState extends State<Routes> {
       debugShowCheckedModeBanner: false,
       title: title,
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        primarySwatch: MaterialColor(0xff5c5cb1, color),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: MaterialColor(0x64518900FF, color),
-          focusColor: MaterialColor(0x64518900aa, color),
-          hoverColor: MaterialColor(0x64518900aa, color),
-          foregroundColor: MaterialColor(0x64518900aa, color),
-          splashColor: Colors.white,
-        )
+          foregroundColor: MaterialColor(0x885c5cb1, color),
+          backgroundColor: MaterialColor(0xff5c5cb1, color),
+          hoverColor: MaterialColor(0x005c5cb1, color),
+          extendedTextStyle: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
+        primaryTextTheme: const TextTheme(
+          titleLarge: TextStyle(
+            color: Colors.white,
+          ),
+          titleMedium: TextStyle(
+            color: Colors.white,
+          ),
+          titleSmall: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        primaryIconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
+        scaffoldBackgroundColor: const Color(0xff181818),
       ),
       initialRoute: '/',
       routes: {

@@ -50,7 +50,7 @@ class _ShortLinksState extends State<ShortLinksPage> {
       drawer: const Menu(),
       appBar: AppBar(title: const Text('Minha coleção de links')),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add, color: Colors.white,),
         onPressed: () {
           Navigator.push(
               context,
@@ -63,7 +63,6 @@ class _ShortLinksState extends State<ShortLinksPage> {
       body: RefreshIndicator(
         onRefresh: listarColecao,
         child: Container(
-          color: Colors.black87,
           child: ListView(
             padding: const EdgeInsets.all(16),
             scrollDirection: Axis.vertical,

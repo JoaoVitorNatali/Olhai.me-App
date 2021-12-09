@@ -47,6 +47,7 @@ class _ModalOcultarPaginaState extends State<ModalOcultarPagina> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.5,
       child: Padding(
         padding: const EdgeInsets.all(16),

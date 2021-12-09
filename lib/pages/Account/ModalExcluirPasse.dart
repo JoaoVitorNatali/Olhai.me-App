@@ -32,6 +32,7 @@ class _ModalExcluirPasseState extends State<ModalExcluirPasse> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.5,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical:46, horizontal: 16),
@@ -52,7 +53,7 @@ class _ModalExcluirPasseState extends State<ModalExcluirPasse> {
               child: Text(
                 widget.pass,
                 style: const TextStyle(
-                  color: Colors.purple,
+                  color: Colors.deepPurple,
                   decoration: TextDecoration.none,
                   fontSize: 20,
                 ),

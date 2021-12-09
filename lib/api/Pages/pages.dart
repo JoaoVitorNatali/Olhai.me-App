@@ -37,7 +37,7 @@ class Pages{
     }
   }
 
-  static Future<List<dynamic>> listarPaginas() async {
+  static Future<List<dynamic>?> listarPaginas() async {
     try {
       String _url = "https://api.olhai.me/v1/pages";
 
@@ -53,7 +53,8 @@ class Pages{
         );
 
         if(response.statusCode == 200) {
-          return json.decode(response.body);
+          if(response.body != null) return json.decode(response.body);
+          return null;
         }
         return json.decode(response.body);
       });

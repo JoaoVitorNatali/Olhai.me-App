@@ -19,7 +19,7 @@ class _CadastroState extends State<Cadastro> {
       body: Center(
         child: Container(
             padding: const EdgeInsets.all(16),
-            color: Colors.black,
+            color: const Color(0xff5c5cb1),
             child: ListView(
               children: [
                 FormularioCadastro(title: widget.title),
