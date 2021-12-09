@@ -53,6 +53,7 @@ class _AdicionarRedeState extends State<AdicionarRede> {
     if(controlador1.text == "" || dropdownValue == "Selecione"){
       setState(() {
         _mensagem_de_erro = "Digite seu username e selecione uma rede social";
+        _loadAdicionarCut = false;
       });
       return;
     }
@@ -60,6 +61,10 @@ class _AdicionarRedeState extends State<AdicionarRede> {
     String url = formatUrl(controlador1.text, dropdownValue);
 
     var response = await Shortcut.criarShortcut(dropdownValue, widget.id, getTitle(dropdownValue), url);
+
+    setState(() {
+      _loadAdicionarCut = false;
+    });
 
     if(response.ok == true){
       widget.listar();
@@ -125,6 +130,16 @@ class _AdicionarRedeState extends State<AdicionarRede> {
                 }).toList(),
               ),
 
+              Text(
+                _mensagem_de_erro,
+                style: const TextStyle(
+                    color: Colors.red,
+                    decoration: TextDecoration.none,
+                    fontSize: 15
+                ),
+                textAlign: TextAlign.center,
+              ),
+
               const SizedBox(height: 20,),
 
               BtnPrimary(
@@ -134,7 +149,6 @@ class _AdicionarRedeState extends State<AdicionarRede> {
                   criarShortCut();
                 },
               )
-
             ],
           ),
         ),
