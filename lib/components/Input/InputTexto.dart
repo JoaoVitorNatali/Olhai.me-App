@@ -60,6 +60,20 @@ class InputTexto extends StatelessWidget {
         color: Colors.white,
       ),
       decoration: InputDecoration(
+        errorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(14),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.red,
+            width: 2,
+          ),
+          borderRadius: BorderRadius.circular(14),
+        ),
         counterStyle: const TextStyle(
           color: Colors.white
         ),
