@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shortlink/api/Shortcut/shortcut.dart';
 
+import '../../constants/constants.dart';
+
 class CardShortCut extends StatefulWidget {
   const CardShortCut({
     Key? key,
@@ -44,6 +46,9 @@ class _CardShortCutState extends State<CardShortCut> {
     return Container(
         margin: const EdgeInsets.only(bottom: 16),
         child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(Constants.borderRadius)
+          ),
           color: Colors.black,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),

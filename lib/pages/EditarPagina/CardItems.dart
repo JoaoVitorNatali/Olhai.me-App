@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shortlink/api/Items/items.dart';
 
+import '../../constants/constants.dart';
+
 class CardItems extends StatefulWidget {
   const CardItems({
     Key? key,
@@ -44,6 +46,9 @@ class _CardCardItemsState extends State<CardItems> {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Constants.borderRadius)
+        ),
         color: Colors.black,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
