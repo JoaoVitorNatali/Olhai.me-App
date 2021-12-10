@@ -126,51 +126,59 @@ class _CardPageState extends State<CardPage> {
                                 top: 36, left: 20, right: 20, bottom: 20),
                             child: ListView(
                               children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 6,
-                                      child: Container(
-                                        child: BtnPrimary("Visitar",
-                                            ao_clicar: () {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (BuildContext
-                                                        context) =>
-                                                    WebViewPage(
-                                                        link:
-                                                            "https://${widget.name}.olhai.me")),
-                                          );
-                                        }),
+                                Visibility(
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 6,
+                                            child: Container(
+                                              child: BtnPrimary("Visitar",
+                                                  ao_clicar: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          WebViewPage(
+                                                              link:
+                                                                  "https://${widget.name}.olhai.me")),
+                                                );
+                                              }),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 10,
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 6,
-                                      child: Container(
-                                        child: BtnPrimary("Compartilhar",
-                                            ao_clicar: () {
-                                          showCupertinoModalBottomSheet(
-                                            context: context,
-                                            builder: (context) => CompartilharLink(
-                                                title: widget.name,
-                                                compartilhar:
-                                                    "https://${widget.name}.olhai.me"),
-                                          );
-                                        }),
+                                      const SizedBox(
+                                        height: 10,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 10,
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            flex: 6,
+                                            child: Container(
+                                              child: BtnPrimary("Compartilhar",
+                                                  ao_clicar: () {
+                                                showCupertinoModalBottomSheet(
+                                                  context: context,
+                                                  builder: (context) =>
+                                                      CompartilharLink(
+                                                          title: widget.name,
+                                                          compartilhar:
+                                                              "https://${widget.name}.olhai.me"),
+                                                );
+                                              }),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                    ],
+                                  ),
+                                  visible: widget.status != "pri",
                                 ),
                                 Row(
                                   children: [
