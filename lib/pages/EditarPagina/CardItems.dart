@@ -25,7 +25,7 @@ class _CardCardItemsState extends State<CardItems> {
 
   bool _load_icon = false;
 
-  apagarShortCut() async{
+  apagarItem() async{
     setState(() {
       _load_icon = true;
     });
@@ -97,7 +97,7 @@ class _CardCardItemsState extends State<CardItems> {
                       )
                   ),
                   onTap: (){
-                    apagarShortCut();
+                    apagarItem();
                   },
                 ),
               ),
