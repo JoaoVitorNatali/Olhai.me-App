@@ -7,7 +7,9 @@ import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shortlink/api/Pages/pages.dart';
 import 'package:shortlink/components/Button/BtnPrimary.dart';
 import 'package:shortlink/components/Input/InputTexto.dart';
+import 'package:shortlink/pages/EditarPagina/AdicionarItem.dart';
 import 'package:shortlink/pages/EditarPagina/AdicionarRede.dart';
+import 'package:shortlink/pages/EditarPagina/CardItems.dart';
 import 'package:shortlink/pages/EditarPagina/CardShortCut.dart';
 
 class EditarPagina extends StatefulWidget {
@@ -25,9 +27,13 @@ class _EditarPaginaState extends State<EditarPagina> {
   final _localizacao = TextEditingController();
   final _descricao = TextEditingController();
   bool _load = false;
+  bool _load_items = false;
+  bool _loadNovoItem = false;
   bool _load_redes_sociais = false;
   bool _loadNovaRede = false;
+
   List<dynamic>? shortcuts;
+  List<dynamic>? items;
 
   String _url_imagem_usuario = "";
 
@@ -60,24 +66,29 @@ class _EditarPaginaState extends State<EditarPagina> {
   Future _trazerDetalhesPagina() async{
     setState(() {
       _load_redes_sociais = true;
+      _load_items = true;
     });
-    var response = await Pages.detalharPagina(widget.id);
+    var dataRequisicao = await Pages.detalharPagina(widget.id);
+    Map? response = json.decode(utf8.decode(dataRequisicao.response!.bodyBytes));
 
     setState(() {
       _load_redes_sociais = false;
+      _load_items = false;
     });
 
-    if(response.ok == true){
+    if(dataRequisicao.ok == true){
       setState(() {
-        if(response.body?["description"] != "") _descricao.text = response.body?["description"];
+        if(response?["description"] != "") _descricao.text = response?["description"];
 
-        if(response.body?["name"] != "") _nome_pagina.text = response.body?["name"];
+        if(response?["name"] != "") _nome_pagina.text = response?["name"];
 
-        if(response.body?["location"] != "") _localizacao.text = response.body?["location"];
+        if(response?["location"] != "") _localizacao.text = response?["location"];
 
-        if(response.body?["profile_image_url"] != "https://static.olhai.me/public/") _url_imagem_usuario = response.body?["profile_image_url"];
+        if(response?["profile_image_url"] != "https://static.olhai.me/public/") _url_imagem_usuario = response?["profile_image_url"];
 
-        if(response.body?["shortcuts"] != null) shortcuts = response.body?["shortcuts"];
+        if(response?["shortcuts"] != null) shortcuts = response?["shortcuts"];
+
+        if(response?["items"] != null) items = response?["items"];
       });
     }
   }
@@ -154,7 +165,10 @@ class _EditarPaginaState extends State<EditarPagina> {
                                   heroTag: "BotaoGaleria",
                                   child: const Icon(Icons.image_search_outlined, color: Colors.white,),
                                   onPressed: () async {
-                                    var image = await ImagePicker().pickImage(source: ImageSource.gallery);
+                                    var image = await ImagePicker().pickImage(
+                                      source: ImageSource.gallery,
+                                      imageQuality: 100
+                                    );
                                     _salvarFotoUsuario(image);
                                   },
                                 ),
@@ -248,6 +262,57 @@ class _EditarPaginaState extends State<EditarPagina> {
                     },
                   ),
 
+                  const SizedBox(height: 38,),
+
+
+
+                  _load_items ? const Center(
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    ),
+                  ) : Container(
+                    child: items == null || items?.length == 0 ? const Center(
+                      child: Text(
+                        "Você não possue nenhum item!",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ) : ListView.builder(
+                        itemCount: items != null ? items!.length : 0,
+                        shrinkWrap: true,
+                        physics: const ScrollPhysics(),
+                        itemBuilder: (context, index){
+                          return CardItems(
+                              id: items![index]["id"].toString(),
+                              page_id: items![index]["page_id"].toString(),
+                              name: items![index]["title"].toString(),
+                              url: items![index]["content"].toString(),
+                              listar: _trazerDetalhesPagina
+                          );
+                        }
+                    ),
+                  ),
+
+                  const SizedBox(height: 20,),
+
+                  BtnPrimary(
+                    "Adicionar Item",
+                    mostrar_progress: _loadNovoItem,
+                    ao_clicar: (){
+                      showCupertinoModalBottomSheet(
+                          context: context,
+                          builder: (context) => Container(
+                            height: MediaQuery.of(context).size.height * 0.8,
+                            color: Colors.white,
+                            child: AdicionarItem(id: widget.id, listar: _trazerDetalhesPagina),
+                          )
+                      );
+                    },
+                  ),
 
                   const SizedBox(height: 38,),
                 ],

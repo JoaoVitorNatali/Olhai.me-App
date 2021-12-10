@@ -181,7 +181,7 @@ class Pages{
       );
 
       if(response.statusCode == 200){
-        return ApiResponse.ok(response.body);
+        return ApiResponse.ok(response.body, response: response);
       }
       return ApiResponse.error(response.body);
 
