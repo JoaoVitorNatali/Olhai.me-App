@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                       itemBuilder: (context, index){
                         return CardPage(
                           id: paginas![index]["id"].toString(),
-                          name: paginas![index]["name"].toString(),
+                          name: paginas![index]["pagename"].toString(),
                           status: paginas![index]["status"].toString(),
                           listar: fowardListar
                         );

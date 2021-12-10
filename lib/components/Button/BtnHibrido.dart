@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shortlink/constants/constants.dart';
 
 class BtnHibrido extends StatelessWidget {
 
@@ -25,7 +26,10 @@ class BtnHibrido extends StatelessWidget {
       focusNode: marcador_foco,
       style: ElevatedButton.styleFrom(
           primary: color,
-          minimumSize: const Size(100, 50)
+          minimumSize: const Size(100, 50),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(Constants.borderRadius)
+          )
       ),
       child: mostrar_progress
           ? const Center(

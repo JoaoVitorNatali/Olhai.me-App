@@ -5,7 +5,9 @@ import 'package:shortlink/components/Button/BtnDanger.dart';
 import 'package:shortlink/api/Pages/pages.dart';
 
 class ModalOcultarPagina extends StatefulWidget {
-  const ModalOcultarPagina({Key? key, required this.id, required this.listar, required this.status}) : super(key: key);
+  const ModalOcultarPagina(
+      {Key? key, required this.id, required this.listar, required this.status})
+      : super(key: key);
   final String id;
   final Function listar;
   final String status;
@@ -15,11 +17,10 @@ class ModalOcultarPagina extends StatefulWidget {
 }
 
 class _ModalOcultarPaginaState extends State<ModalOcultarPagina> {
-
   bool _loader = false;
   String _texto = "";
 
-  ocultarPagina() async{
+  ocultarPagina() async {
     setState(() {
       _loader = true;
     });
@@ -28,7 +29,7 @@ class _ModalOcultarPaginaState extends State<ModalOcultarPagina> {
 
     setState(() {
       _loader = false;
-      if(response.ok == true){
+      if (response.ok == true) {
         widget.listar();
         Navigator.pop(context);
       }
@@ -39,8 +40,10 @@ class _ModalOcultarPaginaState extends State<ModalOcultarPagina> {
   void initState() {
     super.initState();
     setState(() {
-      if(widget.status == "pub") _texto = "ocultar";
-      else _texto = "publicar";
+      if (widget.status == "pub")
+        _texto = "ocultar";
+      else
+        _texto = "publicar";
     });
   }
 
@@ -48,13 +51,12 @@ class _ModalOcultarPaginaState extends State<ModalOcultarPagina> {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      height: MediaQuery.of(context).size.height * 0.5,
+      height: MediaQuery.of(context).size.height * 0.3,
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: ListView(
           children: [
             const SizedBox(height: 40),
-
             Text(
               'Deseja mesmo $_texto a página?',
               style: const TextStyle(
@@ -64,15 +66,10 @@ class _ModalOcultarPaginaState extends State<ModalOcultarPagina> {
               ),
               textAlign: TextAlign.center,
             ),
-
             const SizedBox(height: 40),
-
-            Center(
-              child: BtnDanger('Confirmar', mostrar_progress: _loader, ao_clicar: (){
-                ocultarPagina();
-              }),
-            ),
-
+            BtnDanger('Confirmar', mostrar_progress: _loader, ao_clicar: () {
+              ocultarPagina();
+            }),
           ],
         ),
       ),

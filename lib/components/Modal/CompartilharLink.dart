@@ -49,7 +49,7 @@ class _CompartilharLinkState extends State<CompartilharLink> {
 
                 Center(
                   child: Text(
-                    "go.olhai.me/${widget.title}",
+                    widget.compartilhar,
                     style: const TextStyle(
                         color: Colors.black,
                         decoration: TextDecoration.none,
@@ -77,7 +77,7 @@ class _CompartilharLinkState extends State<CompartilharLink> {
                           FlutterClipboard.copy(widget.compartilhar).then(
                                   (value) => ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
-                                    content: Text("${widget.title} copiado para a área de transferência"),
+                                    content: Text("\"${widget.title}\" copiado para a área de transferência"),
                                     behavior: SnackBarBehavior.floating
                                 ),
                               )

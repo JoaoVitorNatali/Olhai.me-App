@@ -8,6 +8,8 @@ import 'package:shortlink/components/Modal/CompartilharLink.dart';
 import 'package:shortlink/pages/ShortLinks/ModalExcluirLink.dart';
 import 'package:shortlink/pages/ShortLinks/modalOpcoesCard.dart';
 
+import '../../constants/constants.dart';
+
 class CardLink extends StatefulWidget {
   const CardLink({
     Key? key,
@@ -37,9 +39,12 @@ class _CardLinkState extends State<CardLink> {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Constants.borderRadius)
+        ),
         color: Colors.black,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           child: Row(
             children: [
               Expanded(

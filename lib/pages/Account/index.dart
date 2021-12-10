@@ -88,9 +88,12 @@ class _AccountState extends State<Account> {
             child: ListView(
               children: [
 
-                InputTexto(
-                  "Alterar nome",
-                  controlador: controlador1,
+                Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                  child: InputTexto(
+                    "Alterar nome",
+                    controlador: controlador1,
+                  ),
                 ),
 
                 const SizedBox(height: 15,),
@@ -108,13 +111,11 @@ class _AccountState extends State<Account> {
 
                 const SizedBox(height: 40,),
 
-                const Center(
-                  child: Text(
-                    "Meus passes de acesso",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 24
-                    ),
+                const Text(
+                  "Meus passes de acesso",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24
                   ),
                 ),
 

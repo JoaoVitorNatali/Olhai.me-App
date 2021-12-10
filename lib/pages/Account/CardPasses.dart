@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:shortlink/pages/Account/ModalExcluirPasse.dart';
 
+import '../../constants/constants.dart';
+
 class CardPasses extends StatefulWidget {
   const CardPasses({Key? key, required this.id, required this.pass, required this.listar}) : super(key: key);
   final String id;
@@ -19,6 +21,9 @@ class _CardPassesState extends State<CardPasses> {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Constants.borderRadius)
+        ),
         color: Colors.black,
         child: Container(
           padding: const EdgeInsets.all(20),

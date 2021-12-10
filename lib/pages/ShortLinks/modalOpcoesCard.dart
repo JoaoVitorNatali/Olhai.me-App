@@ -38,7 +38,7 @@ class _ModalOpcoesCardState extends State<ModalOpcoesCard> {
     return Container(
         color: Colors.white,
         height: MediaQuery.of(context).size.height * 0.5,
-        padding: const EdgeInsets.symmetric(vertical: 36, horizontal: 36),
+        padding: const EdgeInsets.only(top: 36, left: 16, right: 16, bottom: 16),
         child: ListView(
           children: [
 

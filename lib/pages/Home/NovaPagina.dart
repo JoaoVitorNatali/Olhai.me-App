@@ -92,7 +92,7 @@ class _NovaPaginaState extends State<NovaPagina> {
                 ),
 
                 BtnPrimary(
-                  'Encurtar link',
+                  'Criar página',
                   mostrar_progress: _mostrar_progress,
                   ao_clicar: (){
                     if(formkey.currentState?.validate() == true){

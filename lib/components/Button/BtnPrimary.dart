@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/constants.dart';
+
 class BtnPrimary extends StatelessWidget {
 
   String texto;
@@ -22,7 +24,10 @@ class BtnPrimary extends StatelessWidget {
       onPressed: ao_clicar,
       focusNode: marcador_foco,
       style: ElevatedButton.styleFrom(
-        minimumSize: const Size(100, 50)
+        minimumSize: const Size(100, 50),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Constants.borderRadius)
+        )
       ),
       child: mostrar_progress
         ? const Center(
